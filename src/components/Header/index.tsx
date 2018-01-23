@@ -1,6 +1,6 @@
-import { TodoTextInput } from "components/TodoTextInput";
-import * as React from "react";
-import { Action } from "redux-actions";
+import { TodoTextInput } from 'components/TodoTextInput';
+import * as React from 'react';
+import { Action } from 'redux-actions';
 
 export namespace Header {
   export interface IProps {

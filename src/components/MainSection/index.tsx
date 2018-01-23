@@ -1,11 +1,11 @@
-import * as TodoActions from "actions/todos";
-import * as React from "react";
+import * as TodoActions from 'actions/todos';
+import * as React from 'react';
 
-import * as style from "./style.css";
+import * as style from './style.css';
 
-import { Footer } from "components/Footer";
-import { TodoItem } from "components/TodoItem";
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "constants/filters";
+import { Footer } from 'components/Footer';
+import { TodoItem } from 'components/TodoItem';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from 'constants/filters';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,

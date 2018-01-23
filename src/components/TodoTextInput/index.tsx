@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as classNames from "classnames";
-import * as style from "./style.css";
+import * as React from 'react';
+import * as classNames from 'classnames';
+import * as style from './style.css';
 
 export namespace TodoTextInput {
   export interface IProps {
@@ -23,7 +23,7 @@ export class TodoTextInput extends React.Component<
   constructor(props: TodoTextInput.IProps, context?: any) {
     super(props, context);
     this.state = {
-      text: this.props.text || ""
+      text: this.props.text || ''
     };
     this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +36,7 @@ export class TodoTextInput extends React.Component<
     if (e.which === 13) {
       this.props.onSave(text);
       if (this.props.newTodo) {
-        this.setState({ text: "" });
+        this.setState({ text: '' });
       }
     }
   }

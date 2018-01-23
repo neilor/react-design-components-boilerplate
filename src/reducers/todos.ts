@@ -1,10 +1,10 @@
-import { handleActions } from "redux-actions";
-import * as Actions from "../constants/actions";
+import { handleActions } from 'redux-actions';
+import * as Actions from '../constants/actions';
 
 const initialState: ITodoStoreState = [
   {
     id: 0,
-    text: "Use Redux",
+    text: 'Use Redux',
     completed: false
   }
 ];

@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as classNames from "classnames";
-import * as style from "./style.css";
-import { TodoTextInput } from "../TodoTextInput";
-import { Action } from "redux-actions";
+import * as React from 'react';
+import * as classNames from 'classnames';
+import * as style from './style.css';
+import { TodoTextInput } from '../TodoTextInput';
+import { Action } from 'redux-actions';
 
 export namespace TodoItem {
   export interface IProps {

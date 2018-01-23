@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, Store } from 'redux';
 // tslint:disable-next-line no-implicit-dependencies
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { logger } from '../middleware';
 import rootReducer, { IRootState } from '../reducers';
@@ -12,7 +12,9 @@ export function configureStore(initialState?: IRootState) {
     middleware = composeWithDevTools(middleware);
   }
 
-  const store = createStore(rootReducer, initialState, middleware) as Store<IRootState>;
+  const store = createStore(rootReducer, initialState, middleware) as Store<
+    IRootState
+  >;
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
