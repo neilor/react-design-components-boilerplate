@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import * as Actions from '../constants/actions';
+import * as Actions from 'constants/actions';
 
 const initialState: ITodoStoreState = [
   {
@@ -9,14 +9,16 @@ const initialState: ITodoStoreState = [
   }
 ];
 
-export default handleActions<ITodoStoreState, any>(
+export default handleActions<ITodoStoreState, ITodoItemData | ITodoItemId>(
   {
     [Actions.ADD_TODO]: (state, action) => {
+      const payload = action.payload as ITodoItemData;
+
       return [
         {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
-          ...action.payload
+          ...payload
         },
         ...state
       ];
@@ -27,10 +29,10 @@ export default handleActions<ITodoStoreState, any>(
     },
 
     [Actions.EDIT_TODO]: (state, action) => {
+      const payload = action.payload as ITodoItemData;
+
       return state.map(todo => {
-        return todo.id === action.payload.id
-          ? { ...todo, text: action.payload.text }
-          : todo;
+        return todo.id === payload.id ? { ...todo, text: payload.text } : todo;
       });
     },
 
