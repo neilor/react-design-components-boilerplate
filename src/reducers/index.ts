@@ -1,10 +1,10 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 import todos from './todos';
 
-export interface RootState {
-  todos: TodoStoreState;
+export interface IRootState {
+  todos: ITodoStoreState;
 }
 
-export default combineReducers<RootState>({
+export default combineReducers<IRootState>({
   todos
 });

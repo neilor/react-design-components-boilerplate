@@ -1,13 +1,13 @@
 /** TodoMVC model definitions **/
 
-declare interface TodoItemData {
-  id?: TodoItemId;
-  text?: string;
-  completed?: boolean;
+declare interface ITodoItemData {
+  id: ITodoItemId;
+  text: string;
+  completed: boolean;
 }
 
-declare type TodoItemId = number;
+declare type ITodoItemId = number;
 
-declare type TodoFilterType = 'SHOW_ALL' | 'SHOW_ACTIVE' | 'SHOW_COMPLETED';
+declare type ITodoFilterType = 'SHOW_ALL' | 'SHOW_ACTIVE' | 'SHOW_COMPLETED';
 
-declare type TodoStoreState = TodoItemData[];
+declare type ITodoStoreState = ITodoItemData[];

@@ -1,7 +1,8 @@
-import * as React from 'react';
-import * as style from './style.css';
 import * as classNames from 'classnames';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED, FILTER_TYPES } from '../../constants/filters';
+import { FILTER_TYPES, SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from 'constants/filters';
+import * as React from 'react';
+
+import * as style from './style.css';
 
 export const FILTER_TITLES = {
   [SHOW_ALL]: 'All',
@@ -10,22 +11,18 @@ export const FILTER_TITLES = {
 };
 
 export namespace Footer {
-  export interface Props {
-    filter: TodoFilterType;
+  export interface IProps {
+    filter: ITodoFilterType;
     activeCount: number;
     completedCount: number;
-    onShow: (filter: TodoFilterType) => any;
+    onShow: (filter: ITodoFilterType) => any;
     onClearCompleted: () => any;
-  }
-
-  export interface State {
-    /* empty */
   }
 }
 
-export class Footer extends React.Component<Footer.Props, Footer.State> {
+export class Footer extends React.Component<Footer.IProps, {}> {
 
-  renderTodoCount() {
+  public renderTodoCount() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';
 
@@ -36,7 +33,7 @@ export class Footer extends React.Component<Footer.Props, Footer.State> {
     );
   }
 
-  renderFilterLink(filter: TodoFilterType) {
+  private renderFilterLink(filter: ITodoFilterType) {
     const { filter: selectedFilter, onShow } = this.props;
 
     return (
@@ -48,7 +45,7 @@ export class Footer extends React.Component<Footer.Props, Footer.State> {
     );
   }
 
-  renderClearButton() {
+  private renderClearButton() {
     const { completedCount, onClearCompleted } = this.props;
     if (completedCount > 0) {
       return (
@@ -59,7 +56,7 @@ export class Footer extends React.Component<Footer.Props, Footer.State> {
     }
   }
 
-  render() {
+  public render() {
     return (
       <footer className={style.normal}>
         {this.renderTodoCount()}

@@ -11,22 +11,17 @@ module.exports = {
   context: sourcePath,
   entry: {
     main: './index.tsx',
-    vendor: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-router',
-      'redux'
-    ]
+    vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'redux']
   },
   output: {
     path: outPath,
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   target: 'web',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
+    modules: ['node_modules', '.'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // https://github.com/Microsoft/TypeScript/issues/11677
     mainFields: ['browser', 'main']
@@ -38,10 +33,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: isProduction
           ? 'awesome-typescript-loader?module=es6'
-          : [
-            'react-hot-loader/webpack',
-            'awesome-typescript-loader'
-          ]
+          : ['react-hot-loader/webpack', 'awesome-typescript-loader']
       },
       // css
       {
@@ -67,7 +59,9 @@ module.exports = {
                   require('postcss-url')(),
                   require('postcss-cssnext')(),
                   require('postcss-reporter')(),
-                  require('postcss-browser-reporter')({ disabled: isProduction }),
+                  require('postcss-browser-reporter')({
+                    disabled: isProduction
+                  })
                 ]
               }
             }
@@ -77,12 +71,15 @@ module.exports = {
       // static assets
       { test: /\.html$/, use: 'html-loader' },
       { test: /\.png$/, use: 'url-loader?limit=10000' },
-      { test: /\.jpg$/, use: 'file-loader' },
-    ],
+      { test: /\.jpg$/, use: 'file-loader' }
+    ]
   },
   plugins: [
     new Webpack.DefinePlugin({
-      'process.env.NODE_ENV': isProduction === true ? JSON.stringify('production') : JSON.stringify('development')
+      'process.env.NODE_ENV':
+        isProduction === true
+          ? JSON.stringify('production')
+          : JSON.stringify('development')
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -103,7 +100,7 @@ module.exports = {
     hot: true,
     stats: {
       warnings: false
-    },
+    }
   },
   node: {
     // workaround for webpack-dev-server issue

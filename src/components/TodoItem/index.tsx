@@ -1,26 +1,27 @@
-import * as React from 'react';
-import * as classNames from 'classnames';
-import * as style from './style.css';
-import { TodoTextInput } from '../TodoTextInput';
-import { applyMiddleware } from 'redux';
-import {Action} from 'redux-actions';
+import * as React from "react";
+import * as classNames from "classnames";
+import * as style from "./style.css";
+import { TodoTextInput } from "../TodoTextInput";
+import { Action } from "redux-actions";
 
 export namespace TodoItem {
-  export interface Props {
-    todo: TodoItemData;
-    editTodo: (todo: TodoItemData) => Action<TodoItemData>;
+  export interface IProps {
+    todo: ITodoItemData;
+    editTodo: (todo: Partial<ITodoItemData>) => Action<ITodoItemData>;
     deleteTodo: (id: number) => Action<number>;
     completeTodo: (id: number) => Action<number>;
   }
 
-  export interface State {
+  export interface IState {
     editing: boolean;
   }
 }
 
-export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
-
-  constructor(props?: TodoItem.Props, context?: any) {
+export class TodoItem extends React.Component<
+  TodoItem.IProps,
+  TodoItem.IState
+> {
+  constructor(props: TodoItem.IProps, context?: any) {
     super(props, context);
     this.state = {
       editing: false
@@ -29,11 +30,11 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
   }
 
-  handleDoubleClick() {
+  private handleDoubleClick() {
     this.setState({ editing: true });
   }
 
-  handleSave(id: number, text: string): void {
+  private handleSave(id: number, text: string): void {
     if (text.length === 0) {
       this.props.deleteTodo(id);
     } else {
@@ -42,29 +43,34 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     this.setState({ editing: false });
   }
 
-  render() {
+  public render() {
     const { todo, completeTodo, deleteTodo } = this.props;
 
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput text={todo.text}
+        <TodoTextInput
+          text={todo.text}
           editing={this.state.editing}
-          onSave={(text) => this.handleSave(todo.id, text)} />
+          onSave={text => this.handleSave(todo.id, text)}
+        />
       );
     } else {
       element = (
         <div className={style.view}>
-          <input className={style.toggle}
+          <input
+            className={style.toggle}
             type="checkbox"
             checked={todo.completed}
-            onChange={() => completeTodo(todo.id)} />
+            onChange={() => completeTodo(todo.id)}
+          />
 
-          <label onDoubleClick={this.handleDoubleClick}>
-            {todo.text}
-          </label>
+          <label onDoubleClick={this.handleDoubleClick}>{todo.text}</label>
 
-          <button className={style.destroy} onClick={() => deleteTodo(todo.id)} />
+          <button
+            className={style.destroy}
+            onClick={() => deleteTodo(todo.id)}
+          />
         </div>
       );
     }
@@ -76,10 +82,6 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
       [style.normal]: !this.state.editing
     });
 
-    return (
-      <li className={classes}>
-        {element}
-      </li>
-    );
+    return <li className={classes}>{element}</li>;
   }
 }
