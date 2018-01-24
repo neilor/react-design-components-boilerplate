@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { IRootState } from 'reducers';
+import { IRootState } from 'types/redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import * as TodoActions from 'actions/todos';

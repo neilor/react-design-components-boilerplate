@@ -1,6 +1,7 @@
-import { handleActions } from 'redux-actions';
+import { Epic } from 'redux-observable';
+import { handleActions, Action } from 'redux-actions';
 import * as Actions from 'constants/actions';
-import { IAction } from 'types/redux';
+import { IRootState } from 'types/redux';
 
 const initialState: ITodoStoreState = [
   {
@@ -12,22 +13,22 @@ const initialState: ITodoStoreState = [
 
 export default handleActions<ITodoStoreState, any>(
   {
-    [Actions.ADD_TODO]: (state, action: IAction<ITodoItemData>) => {
+    [Actions.ADD_TODO]: (state, action: Action<ITodoItemData>) => {
       return [
         {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
-          ...action.payload
+          ...(action.payload as ITodoItemData)
         },
         ...state
       ];
     },
 
-    [Actions.DELETE_TODO]: (state, action: IAction<ITodoItemId>) => {
+    [Actions.DELETE_TODO_ACTUAL]: (state, action: Action<ITodoItemId>) => {
       return state.filter(todo => todo.id !== action.payload);
     },
 
-    [Actions.EDIT_TODO]: (state, action: IAction<ITodoItemData>) => {
+    [Actions.EDIT_TODO]: (state, action: Action<ITodoItemData>) => {
       const payload = action.payload as ITodoItemData;
 
       return state.map(todo => {
@@ -35,7 +36,7 @@ export default handleActions<ITodoStoreState, any>(
       });
     },
 
-    [Actions.COMPLETE_TODO]: (state, action: IAction<ITodoItemId>) => {
+    [Actions.COMPLETE_TODO]: (state, action: Action<ITodoItemId>) => {
       return state.map(todo => {
         return todo.id === action.payload
           ? { ...todo, completed: !todo.completed }
@@ -59,3 +60,14 @@ export default handleActions<ITodoStoreState, any>(
   },
   initialState
 );
+
+export const deleteTodoEpic: Epic<Action<ITodoItemId>, IRootState> = action$ =>
+  action$
+    .ofType(Actions.DELETE_TODO)
+    .delay(1000)
+    .map(action => {
+      return {
+        type: Actions.DELETE_TODO_ACTUAL,
+        payload: action.payload
+      };
+    });
