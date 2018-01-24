@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { IRootState } from 'types/redux';
+import { IRootState } from 'reducers';
 import { logger } from '../middleware';
 import rootReducer, { rootEpic } from '../reducers';
 

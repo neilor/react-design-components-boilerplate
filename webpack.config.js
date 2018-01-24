@@ -35,9 +35,9 @@ module.exports = {
           ? 'awesome-typescript-loader?module=es6'
           : ['react-hot-loader/webpack', 'awesome-typescript-loader']
       },
-      // css
+      // s?css
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -64,6 +64,9 @@ module.exports = {
                   })
                 ]
               }
+            },
+            {
+              loader: 'sass-loader'
             }
           ]
         })
@@ -75,6 +78,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Webpack.NamedModulesPlugin(),
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV':
         isProduction === true

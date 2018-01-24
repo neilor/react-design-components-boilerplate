@@ -1,7 +1,7 @@
 import { Epic, combineEpics } from 'redux-observable';
 import { handleActions, Action } from 'redux-actions';
 import * as Actions from 'constants/actions';
-import { IRootState } from 'types/redux';
+import { IRootState } from 'reducers';
 
 const initialState: ITodoStoreState = [
   {
