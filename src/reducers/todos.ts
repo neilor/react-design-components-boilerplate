@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import * as Actions from 'constants/actions';
+import { IAction } from 'reducers';
 
 const initialState: ITodoStoreState = [
   {
@@ -9,26 +10,24 @@ const initialState: ITodoStoreState = [
   }
 ];
 
-export default handleActions<ITodoStoreState, ITodoItemData | ITodoItemId>(
+export default handleActions<ITodoStoreState, any>(
   {
-    [Actions.ADD_TODO]: (state, action) => {
-      const payload = action.payload as ITodoItemData;
-
+    [Actions.ADD_TODO]: (state, action: IAction<ITodoItemData>) => {
       return [
         {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
-          ...payload
+          ...action.payload
         },
         ...state
       ];
     },
 
-    [Actions.DELETE_TODO]: (state, action) => {
+    [Actions.DELETE_TODO]: (state, action: IAction<ITodoItemId>) => {
       return state.filter(todo => todo.id !== action.payload);
     },
 
-    [Actions.EDIT_TODO]: (state, action) => {
+    [Actions.EDIT_TODO]: (state, action: IAction<ITodoItemData>) => {
       const payload = action.payload as ITodoItemData;
 
       return state.map(todo => {
@@ -36,7 +35,7 @@ export default handleActions<ITodoStoreState, ITodoItemData | ITodoItemId>(
       });
     },
 
-    [Actions.COMPLETE_TODO]: (state, action) => {
+    [Actions.COMPLETE_TODO]: (state, action: IAction<ITodoItemId>) => {
       return state.map(todo => {
         return todo.id === action.payload
           ? { ...todo, completed: !todo.completed }
