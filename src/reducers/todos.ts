@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import * as Actions from 'constants/actions';
-import { IAction } from 'reducers';
+import { IAction } from 'types/redux';
 
 const initialState: ITodoStoreState = [
   {
