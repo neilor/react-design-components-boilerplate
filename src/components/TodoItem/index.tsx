@@ -4,24 +4,19 @@ import * as style from './style.css';
 import { TodoTextInput } from '../TodoTextInput';
 import { Action } from 'redux-actions';
 
-export namespace TodoItem {
-  export interface IProps {
-    todo: ITodoItemData;
-    editTodo: (todo: Partial<ITodoItemData>) => Action<ITodoItemData>;
-    deleteTodo: (id: number) => Action<number>;
-    completeTodo: (id: number) => Action<number>;
-  }
-
-  export interface IState {
-    editing: boolean;
-  }
+export interface IProps {
+  todo: ITodoItemData;
+  editTodo: (todo: Partial<ITodoItemData>) => Action<ITodoItemData>;
+  deleteTodo: (id: number) => Action<number>;
+  completeTodo: (id: number) => Action<number>;
 }
 
-export class TodoItem extends React.Component<
-  TodoItem.IProps,
-  TodoItem.IState
-> {
-  constructor(props: TodoItem.IProps, context?: any) {
+export interface IState {
+  editing: boolean;
+}
+
+export class TodoItem extends React.Component<IProps, IState> {
+  constructor(props: IProps, context?: any) {
     super(props, context);
     this.state = {
       editing: false

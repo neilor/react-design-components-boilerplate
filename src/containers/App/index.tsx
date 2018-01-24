@@ -9,15 +9,13 @@ import { Header, MainSection } from 'components';
 
 import * as style from './style.css';
 
-export namespace App {
-  export interface IProps extends RouteComponentProps<void> {
-    todos: ITodoItemData[];
-    actions: typeof TodoActions;
-  }
+export interface IProps extends RouteComponentProps<void> {
+  todos: ITodoItemData[];
+  actions: typeof TodoActions;
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export class App extends React.Component<App.IProps, {}> {
+export class App extends React.Component<IProps, {}> {
   public render() {
     const { todos, actions, children } = this.props;
     return (

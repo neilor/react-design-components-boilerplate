@@ -2,14 +2,12 @@ import { TodoTextInput } from 'components/TodoTextInput';
 import * as React from 'react';
 import { Action } from 'redux-actions';
 
-export namespace Header {
-  export interface IProps {
-    addTodo: (todo: Partial<ITodoItemData>) => Action<ITodoItemData>;
-  }
+export interface IProps {
+  addTodo: (todo: Partial<ITodoItemData>) => Action<ITodoItemData>;
 }
 
-export class Header extends React.Component<Header.IProps, {}> {
-  constructor(props: Header.IProps, context?: any) {
+export class Header extends React.Component<IProps, {}> {
+  constructor(props: IProps, context?: any) {
     super(props, context);
     this.handleSave = this.handleSave.bind(this);
   }

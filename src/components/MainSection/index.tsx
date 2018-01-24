@@ -13,22 +13,17 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: (todo: ITodoItemData) => todo.completed
 };
 
-export namespace MainSection {
-  export interface IProps {
-    todos: ITodoItemData[];
-    actions: typeof TodoActions;
-  }
-
-  export interface IState {
-    filter: ITodoFilterType;
-  }
+export interface IProps {
+  todos: ITodoItemData[];
+  actions: typeof TodoActions;
 }
 
-export class MainSection extends React.Component<
-  MainSection.IProps,
-  MainSection.IState
-> {
-  constructor(props: MainSection.IProps, context?: any) {
+export interface IState {
+  filter: ITodoFilterType;
+}
+
+export class MainSection extends React.Component<IProps, IState> {
+  constructor(props: IProps, context?: any) {
     super(props, context);
     this.state = { filter: SHOW_ALL };
     this.handleClearCompleted = this.handleClearCompleted.bind(this);

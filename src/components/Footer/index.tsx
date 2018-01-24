@@ -15,17 +15,15 @@ export const FILTER_TITLES = {
   [SHOW_COMPLETED]: 'Completed'
 };
 
-export namespace Footer {
-  export interface IProps {
-    filter: ITodoFilterType;
-    activeCount: number;
-    completedCount: number;
-    onShow: (filter: ITodoFilterType) => any;
-    onClearCompleted: () => any;
-  }
+export interface IProps {
+  filter: ITodoFilterType;
+  activeCount: number;
+  completedCount: number;
+  onShow: (filter: ITodoFilterType) => any;
+  onClearCompleted: () => any;
 }
 
-export class Footer extends React.Component<Footer.IProps, {}> {
+export class Footer extends React.Component<IProps, {}> {
   public renderTodoCount() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';

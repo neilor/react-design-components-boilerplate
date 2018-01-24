@@ -2,25 +2,20 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as style from './style.css';
 
-export namespace TodoTextInput {
-  export interface IProps {
-    text?: string;
-    placeholder?: string;
-    newTodo?: boolean;
-    editing?: boolean;
-    onSave: (text: string) => void;
-  }
-
-  export interface IState {
-    text: string;
-  }
+export interface IProps {
+  text?: string;
+  placeholder?: string;
+  newTodo?: boolean;
+  editing?: boolean;
+  onSave: (text: string) => void;
 }
 
-export class TodoTextInput extends React.Component<
-  TodoTextInput.IProps,
-  TodoTextInput.IState
-> {
-  constructor(props: TodoTextInput.IProps, context?: any) {
+export interface IState {
+  text: string;
+}
+
+export class TodoTextInput extends React.Component<IProps, IState> {
+  constructor(props: IProps, context?: any) {
     super(props, context);
     this.state = {
       text: this.props.text || ''
