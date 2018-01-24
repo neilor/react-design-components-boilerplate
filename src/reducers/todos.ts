@@ -1,4 +1,4 @@
-import { Epic } from 'redux-observable';
+import { Epic, combineEpics } from 'redux-observable';
 import { handleActions, Action } from 'redux-actions';
 import * as Actions from 'constants/actions';
 import { IRootState } from 'types/redux';
@@ -61,7 +61,7 @@ export default handleActions<ITodoStoreState, any>(
   initialState
 );
 
-export const deleteTodoEpic: Epic<Action<ITodoItemId>, IRootState> = action$ =>
+const deleteTodoEpic: Epic<Action<ITodoItemId>, IRootState> = action$ =>
   action$
     .ofType(Actions.DELETE_TODO)
     .delay(1000)
@@ -71,3 +71,5 @@ export const deleteTodoEpic: Epic<Action<ITodoItemId>, IRootState> = action$ =>
         payload: action.payload
       };
     });
+
+export const todoEpics = combineEpics(deleteTodoEpic);
