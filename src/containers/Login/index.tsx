@@ -43,7 +43,14 @@ class Login extends React.Component<IProps> {
           />
           <button type="submit">Login</button>
         </form>
-        {login.status === 'success' && <div>Login success !!!</div>}
+        {(() => {
+          switch (login.status) {
+            case 'checking':
+              return <div>checking login credentials ...</div>;
+            case 'success':
+              return <div>login success !!!</div>;
+          }
+        })()}
       </div>
     );
   }

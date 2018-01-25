@@ -1,9 +1,11 @@
 import { handleActions, Action } from 'redux-actions';
 import * as c from 'constants/login';
+import * as actions from 'actions/login';
 import { combineEpics, Epic } from 'redux-observable';
 import { IRootState } from 'reducers';
+import { Observable } from 'rxjs';
 
-type ILoginStatus = 'success' | 'pristine';
+export type ILoginStatus = 'success' | 'pristine' | 'checking';
 
 export interface IReducerState {
   id: string;
@@ -17,7 +19,7 @@ const INITIAL_STATE: IReducerState = {
   status: 'pristine'
 };
 
-export default handleActions<IReducerState, any>(
+export default handleActions<IReducerState, never>(
   {
     [c.EDIT_ID]: (state, action: Action<string>) => ({
       ...state,
@@ -27,9 +29,9 @@ export default handleActions<IReducerState, any>(
       ...state,
       password: action.payload as string
     }),
-    [c.LOGIN_SUCCESSFUL]: state => ({
+    [c.UPDATE_LOGIN_STATUS]: (state, action: Action<ILoginStatus>) => ({
       ...state,
-      status: 'success'
+      status: action.payload as ILoginStatus
     })
   },
   INITIAL_STATE
@@ -38,9 +40,11 @@ export default handleActions<IReducerState, any>(
 const checkCredentialsEpic: Epic<Action<any>, IRootState> = action$ =>
   action$
     .ofType(c.CHECK_CREDENTIALS)
-    .delay(1000)
-    .mapTo({
-      type: c.LOGIN_SUCCESSFUL
-    });
+    .mergeMap(() =>
+      Observable.concat(
+        Observable.of(actions.updateLoginStatus('checking')),
+        Observable.of(actions.updateLoginStatus('success')).delay(1000)
+      )
+    );
 
 export const epics = combineEpics(checkCredentialsEpic);
