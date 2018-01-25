@@ -72,4 +72,4 @@ const deleteTodoEpic: Epic<Action<ITodoItemId>, IRootState> = action$ =>
       };
     });
 
-export const todoEpics = combineEpics(deleteTodoEpic);
+export const epics = combineEpics(deleteTodoEpic);

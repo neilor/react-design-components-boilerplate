@@ -18,21 +18,32 @@ class Login extends React.Component<IProps> {
 
     return (
       <div className={s.container}>
-        <div>Login</div>
-        <input
-          value={login.id}
-          onChange={e => {
-            const target = e.target as HTMLInputElement;
-            actions.editLoginId(target.value);
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+
+            actions.checkLoginCredentials();
           }}
-        />
-        <input
-          value={login.password}
-          onChange={e => {
-            const target = e.target as HTMLInputElement;
-            actions.editLoginPassword(target.value);
-          }}
-        />
+        >
+          <input
+            value={login.id}
+            placeholder="id"
+            onChange={e => {
+              const target = e.target as HTMLInputElement;
+              actions.editLoginId(target.value);
+            }}
+          />
+          <input
+            value={login.password}
+            placeholder="password"
+            onChange={e => {
+              const target = e.target as HTMLInputElement;
+              actions.editLoginPassword(target.value);
+            }}
+          />
+          <button type="submit">Login</button>
+        </form>
+        {login.status === 'success' && <div>Login success !!!</div>}
       </div>
     );
   }

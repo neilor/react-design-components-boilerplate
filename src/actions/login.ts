@@ -3,3 +3,4 @@ import * as Actions from 'constants/login';
 
 export const editLoginId = createAction<string>(Actions.EDIT_ID);
 export const editLoginPassword = createAction<string>(Actions.EDIT_PASSWORD);
+export const checkLoginCredentials = createAction(Actions.CHECK_CREDENTIALS);
