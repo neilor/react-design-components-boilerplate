@@ -37,6 +37,7 @@ class Login extends React.Component<IProps> {
           <input
             value={login.password}
             placeholder="password"
+            type="password"
             onChange={e => {
               const target = e.target as HTMLInputElement;
               actions.editLoginPassword(target.value);
