@@ -4,7 +4,7 @@ import { combineEpics } from 'redux-observable';
 import login, {
   epics as loginEpics,
   IReducerState as ILoginState
-} from 'reducers/login';
+} from './login/reducers';
 
 export const rootEpic = combineEpics(loginEpics);
 
@@ -12,6 +12,6 @@ export interface IRootState {
   login: ILoginState;
 }
 
-export default combineReducers<IRootState>({
+export const rootReducer = combineReducers<IRootState>({
   login
 });

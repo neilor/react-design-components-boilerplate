@@ -1,9 +1,10 @@
 import { handleActions, Action } from 'redux-actions';
-import * as c from 'constants/login';
-import * as actions from 'actions/login';
 import { combineEpics, Epic } from 'redux-observable';
-import { IRootState } from 'reducers';
+import { IRootState } from 'app';
 import { Observable } from 'rxjs';
+
+import * as c from './constants';
+import * as actions from './actions';
 
 export type ILoginStatus = 'success' | 'pristine' | 'checking';
 

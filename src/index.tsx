@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router';
 import 'rxjs';
 
-import Login from 'containers/Login';
+import Login from 'app/login/container';
 import { configureStore } from 'store';
 
 import './index.scss';

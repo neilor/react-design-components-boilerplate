@@ -3,7 +3,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { logger } from '../middleware';
-import rootReducer, { rootEpic, IRootState } from '../reducers';
+import { rootReducer, rootEpic, IRootState } from '../app';
 
 export function configureStore(initialState?: IRootState) {
   const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -19,8 +19,8 @@ export function configureStore(initialState?: IRootState) {
   >;
 
   if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers');
+    module.hot.accept('../app', () => {
+      const nextReducer = require('../app');
       store.replaceReducer(nextReducer);
     });
   }
