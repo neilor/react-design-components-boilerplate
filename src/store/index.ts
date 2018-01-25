@@ -2,9 +2,8 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { IRootState } from 'reducers';
 import { logger } from '../middleware';
-import rootReducer, { rootEpic } from '../reducers';
+import rootReducer, { rootEpic, IRootState } from '../reducers';
 
 export function configureStore(initialState?: IRootState) {
   const epicMiddleware = createEpicMiddleware(rootEpic);
