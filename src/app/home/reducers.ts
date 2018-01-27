@@ -7,9 +7,28 @@ import { IRootState } from 'app';
 
 import * as c from './constants';
 
-export interface IReducerState {}
+export interface ISearchResultRow {
+  num_votes: number;
+  type: string;
+  title: string;
+  rating: number;
+  image: {
+    width: number;
+    url: string;
+    height: number;
+  };
+  year: number;
+}
 
-const INITIAL_STATE: IReducerState = {};
+export interface IReducerState {
+  searchTerm: string;
+  results: ISearchResultRow[];
+}
+
+const INITIAL_STATE: IReducerState = {
+  searchTerm: '',
+  results: []
+};
 
 export default handleActions<IReducerState, never>({}, INITIAL_STATE);
 

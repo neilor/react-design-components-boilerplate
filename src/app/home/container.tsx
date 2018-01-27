@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
 import { IRootState } from 'app';
+import { multiSearch } from 'services/moviedb';
 
 import * as HomeActions from './actions';
 
@@ -16,6 +17,10 @@ class Home extends React.Component<IProps, any> {
     const { actions } = this.props;
 
     actions.checkLogin();
+
+    multiSearch('dark').subscribe(result => {
+      console.log(result);
+    });
   }
 
   public render() {
