@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
 
 import * as s from './styles.scss';
 
-import { connect } from 'react-redux';
 import { IRootState } from 'app';
-import { Dispatch, bindActionCreators } from 'redux';
 
 import * as LoginActions from './actions';
 
