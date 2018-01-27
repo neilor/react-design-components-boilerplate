@@ -1,5 +1,6 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
+import { routerActions } from 'react-router-redux';
 import { IRootState } from 'app';
 import { Observable } from 'rxjs';
 
@@ -63,9 +64,14 @@ const checkCredentialsEpic: Epic<Action<any>, IRootState> = (action$, store) =>
 
     return Observable.concat(
       Observable.of(actions.updateLoginStatus('checking')),
-      verifyLogin(loginState).mergeMap(isLogin =>
-        Observable.of(
-          actions.updateLoginStatus(isLogin ? 'success' : 'failure')
+      verifyLogin(loginState).mergeMap(valid =>
+        Observable.concat(
+          Observable.of(
+            actions.updateLoginStatus(valid ? 'success' : 'failure')
+          ),
+          valid
+            ? Observable.of(routerActions.push('/'))
+            : Observable.empty<never>()
         )
       )
     );
