@@ -49,7 +49,7 @@ export default handleActions<IReducerState, never>(
 
       if (action.payload === 'success') {
         // reset state to initial
-        Object.assign(newState, INITIAL_STATE);
+        Object.assign(newState, { ...INITIAL_STATE, status: 'success' });
       }
 
       return newState;
