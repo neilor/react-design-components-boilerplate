@@ -40,10 +40,19 @@ export default handleActions<IReducerState, never>(
 
       return newState;
     },
-    [c.UPDATE_LOGIN_STATUS]: (state, action: Action<ILoginStatus>) => ({
-      ...state,
-      status: action.payload as ILoginStatus
-    })
+    [c.UPDATE_LOGIN_STATUS]: (state, action: Action<ILoginStatus>) => {
+      const newState = {
+        ...state,
+        status: action.payload as ILoginStatus
+      };
+
+      if (action.payload === 'success') {
+        // reset state to initial
+        Object.assign(newState, INITIAL_STATE);
+      }
+
+      return newState;
+    }
   },
   INITIAL_STATE
 );

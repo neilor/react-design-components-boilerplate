@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-import * as Actions from './constants';
+import * as c from './constants';
 import { ILoginStatus } from './reducers';
 
 export interface IEditFieldPayload {
@@ -8,10 +8,9 @@ export interface IEditFieldPayload {
   value: string;
 }
 
-export const editField = createAction<IEditFieldPayload>(
-  Actions.LOGIN_EDIT_FIELD
-);
-export const checkLoginCredentials = createAction(Actions.CHECK_CREDENTIALS);
+export const editField = createAction<IEditFieldPayload>(c.LOGIN_EDIT_FIELD);
+export const checkLoginCredentials = createAction(c.CHECK_CREDENTIALS);
 export const updateLoginStatus = createAction<ILoginStatus>(
-  Actions.UPDATE_LOGIN_STATUS
+  c.UPDATE_LOGIN_STATUS
 );
+export const loginSuccessful = createAction(c.LOGIN_SUCCESSFUL);
