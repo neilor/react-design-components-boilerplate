@@ -8,8 +8,9 @@ import { routerMiddleware } from 'react-router-redux';
 import { logger } from '../middleware';
 import { rootReducer, rootEpic, IRootState } from '../app';
 
+export const history = createHistory();
+
 export function configureStore(initialState?: IRootState) {
-  const history = createHistory();
   const routeMiddleware = routerMiddleware(history);
 
   const epicMiddleware = createEpicMiddleware(rootEpic);
