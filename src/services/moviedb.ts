@@ -14,18 +14,16 @@ export interface IMultiSearchResult {
 export interface IResultRow {
   original_name?: string | null;
   id: number;
-  media_type: string;
+  media_type?: ISearchType;
   name?: string | null;
   vote_count: number;
   vote_average: number;
   poster_path: string;
-  first_air_date?: string | null;
   popularity: number;
   genre_ids?: number[] | null;
   original_language: string;
   backdrop_path: string;
   overview: string;
-  origin_country?: string[] | null;
   video?: boolean | null;
   title?: string | null;
   original_title?: string | null;
@@ -48,5 +46,16 @@ export const search = (type: ISearchType = 'multi') => (
   Observable.from(
     fetchJsonp(
       `${BASE_URL}/search/${type}?api_key=${API_KEY}&query=${query}`
+    ).then(response => response.json())
+  );
+
+export type IMovieListType = 'upcoming' | 'top-rated';
+
+export const movieList = (type: IMovieListType) => (
+  page: number = 1
+): Observable<any> =>
+  Observable.from(
+    fetchJsonp(
+      `${BASE_URL}/movie/${type}?api_key=${API_KEY}&page=${page}`
     ).then(response => response.json())
   );
