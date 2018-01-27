@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
 import { IRootState } from 'app';
-import { multiSearch } from 'services/moviedb';
 
 import * as HomeActions from './actions';
 
@@ -16,21 +15,33 @@ class Home extends React.Component<IProps, any> {
   public componentDidMount() {
     const { actions } = this.props;
 
-    actions.checkLogin();
-
-    multiSearch('dark').subscribe(result => {
-      console.log(result);
-    });
+    actions.epicCheckLogin();
   }
 
   public render() {
-    const { data: { login } } = this.props;
+    const { data: { login, home }, actions } = this.props;
 
     if (login.status !== 'success') {
       return null;
     }
 
-    return <div>Home</div>;
+    return (
+      <div>
+        <input
+          value={home.searchTerm}
+          onChange={e => {
+            const target = e.target as HTMLInputElement;
+
+            actions.updateSearchTerm(target.value);
+          }}
+        />
+        <div>
+          {home.results.map(result => (
+            <div key={result.id}>{result.title}</div>
+          ))}
+        </div>
+      </div>
+    );
   }
 }
 
