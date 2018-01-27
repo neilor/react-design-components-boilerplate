@@ -29,6 +29,7 @@ class Login extends React.Component<IProps> {
           <input
             value={login.id}
             placeholder="id"
+            autoFocus={login.status === 'failure'}
             onChange={e => {
               const target = e.target as HTMLInputElement;
               actions.editLoginId(target.value);
@@ -49,6 +50,8 @@ class Login extends React.Component<IProps> {
           switch (login.status) {
             case 'checking':
               return <div>checking login credentials ...</div>;
+            case 'failure':
+              return <div>wrong id or password</div>;
             case 'success':
               return <div>login successful !!!</div>;
           }

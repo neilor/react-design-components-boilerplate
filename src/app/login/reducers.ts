@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 
 import * as c from './constants';
 import * as actions from './actions';
+import { verifyLogin } from 'app/login/services';
 
-export type ILoginStatus = 'success' | 'pristine' | 'checking';
+export type ILoginStatus = 'success' | 'pristine' | 'checking' | 'failure';
 
 export interface IReducerState {
   id: string;
@@ -38,14 +39,18 @@ export default handleActions<IReducerState, never>(
   INITIAL_STATE
 );
 
-const checkCredentialsEpic: Epic<Action<any>, IRootState> = action$ =>
-  action$
-    .ofType(c.CHECK_CREDENTIALS)
-    .mergeMap(() =>
-      Observable.concat(
-        Observable.of(actions.updateLoginStatus('checking')),
-        Observable.of(actions.updateLoginStatus('success')).delay(1000)
+const checkCredentialsEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+  action$.ofType(c.CHECK_CREDENTIALS).mergeMap(() => {
+    const loginState = store.getState().login;
+
+    return Observable.concat(
+      Observable.of(actions.updateLoginStatus('checking')),
+      verifyLogin(loginState).mergeMap(isLogin =>
+        Observable.of(
+          actions.updateLoginStatus(isLogin ? 'success' : 'failure')
+        )
       )
     );
+  });
 
 export const epics = combineEpics(checkCredentialsEpic);
