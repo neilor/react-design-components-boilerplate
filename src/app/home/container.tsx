@@ -34,7 +34,23 @@ class Home extends React.Component<IProps, any> {
 
             actions.updateSearchTerm(target.value);
           }}
+          onFocus={() => {
+            actions.epicSearchOnFocus();
+          }}
         />
+        <select
+          value={home.searchType}
+          onChange={e => {
+            const target = e.target as HTMLSelectElement;
+
+            actions.updateSearchType(target.value);
+          }}
+        >
+          <option value="multi">All</option>
+          <option value="person">Person</option>
+          <option value="tv">TV</option>
+          <option value="movie">Movie</option>
+        </select>
         <div>
           {home.results.map(result => (
             <div key={result.id}>

@@ -33,9 +33,20 @@ export interface IResultRow {
   release_date?: string | null;
 }
 
-export const multiSearch = (query: string): Observable<IMultiSearchResult> =>
+export type ISearchType =
+  | 'multi'
+  | 'tv'
+  | 'person'
+  | 'movie'
+  | 'company'
+  | 'collection'
+  | 'keyword';
+
+export const search = (type: ISearchType = 'multi') => (
+  query: string
+): Observable<IMultiSearchResult> =>
   Observable.from(
     fetchJsonp(
-      `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`
+      `${BASE_URL}/search/${type}?api_key=${API_KEY}&query=${query}`
     ).then(response => response.json())
   );

@@ -4,19 +4,21 @@ import { Observable } from 'rxjs/Observable';
 import { routerActions } from 'react-router-redux';
 
 import { IRootState } from 'app';
-import { IResultRow, multiSearch } from 'services/moviedb';
+import { IResultRow, search, ISearchType } from 'services/moviedb';
 
 import * as c from './constants';
 import * as actions from './actions';
 
 export interface IReducerState {
   searchTerm: string;
+  searchType: ISearchType;
   results: IResultRow[];
 }
 
 const INITIAL_STATE: IReducerState = {
   searchTerm: '',
-  results: []
+  results: [],
+  searchType: 'multi'
 };
 
 export default handleActions<IReducerState, never>(
@@ -28,6 +30,11 @@ export default handleActions<IReducerState, never>(
     [c.RESULTS_UPDATE]: (state, action: Action<IResultRow[]>) => ({
       ...state,
       results: action.payload as IResultRow[]
+    }),
+    [c.SEARCH_TYPE_UPDATE]: (state, action: Action<ISearchType>) => ({
+      ...state,
+      searchType: action.payload as ISearchType,
+      results: []
     })
   },
   INITIAL_STATE
@@ -44,20 +51,36 @@ const checkLoginEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     return Observable.empty<never>();
   });
 
-const searchTermApiEpic: Epic<Action<any>, IRootState> = action$ =>
+const searchTermApiEpic: Epic<Action<any>, IRootState> = (action$, store) =>
   action$
     .ofType(c.TERM_SEARCH_UPDATE)
     .map((action: Action<string>) => (action.payload as string).trim())
-    .distinctUntilChanged()
     .debounceTime(250)
     .mergeMap(query => {
       if (query) {
+        const searchType = store.getState().home.searchType;
+
         return Observable.of(query)
-          .switchMap(multiSearch)
+          .switchMap(search(searchType))
           .map(result => actions.updateResults(result.results));
       } else {
         return Observable.of(actions.updateResults([]));
       }
     });
 
-export const epics = combineEpics(checkLoginEpic, searchTermApiEpic);
+const onFocusSearchEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+  action$.ofType(c.EPIC_ON_FOCUS_SEARCH).mergeMap(() => {
+    const home = store.getState().home;
+
+    if (home.results.length === 0) {
+      return Observable.of(actions.updateSearchTerm(home.searchTerm));
+    } else {
+      return Observable.empty<never>();
+    }
+  });
+
+export const epics = combineEpics(
+  checkLoginEpic,
+  searchTermApiEpic,
+  onFocusSearchEpic
+);
