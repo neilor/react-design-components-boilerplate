@@ -13,4 +13,3 @@ export const checkLoginCredentials = createAction(c.CHECK_CREDENTIALS);
 export const updateLoginStatus = createAction<ILoginStatus>(
   c.UPDATE_LOGIN_STATUS
 );
-export const loginSuccessful = createAction(c.LOGIN_SUCCESSFUL);
