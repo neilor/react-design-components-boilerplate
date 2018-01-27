@@ -32,7 +32,7 @@ class Login extends React.Component<IProps> {
             autoFocus={login.status === 'failure'}
             onChange={e => {
               const target = e.target as HTMLInputElement;
-              actions.editLoginId(target.value);
+              actions.editField({ value: target.value, key: 'id' });
             }}
           />
           <input
@@ -41,7 +41,7 @@ class Login extends React.Component<IProps> {
             type="password"
             onChange={e => {
               const target = e.target as HTMLInputElement;
-              actions.editLoginPassword(target.value);
+              actions.editField({ value: target.value, key: 'password' });
             }}
           />
           <button type="submit">Login</button>

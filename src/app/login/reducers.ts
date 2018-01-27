@@ -23,14 +23,23 @@ const INITIAL_STATE: IReducerState = {
 
 export default handleActions<IReducerState, never>(
   {
-    [c.EDIT_ID]: (state, action: Action<string>) => ({
-      ...state,
-      id: action.payload as string
-    }),
-    [c.EDIT_PASSWORD]: (state, action: Action<string>) => ({
-      ...state,
-      password: action.payload as string
-    }),
+    [c.LOGIN_EDIT_FIELD]: (
+      state,
+      action: Action<actions.IEditFieldPayload>
+    ) => {
+      const payload = action.payload as actions.IEditFieldPayload;
+
+      const newState = {
+        ...state,
+        [payload.key]: payload.value
+      };
+
+      if (state.status !== 'pristine') {
+        Object.assign(newState, { status: 'pristine' });
+      }
+
+      return newState;
+    },
     [c.UPDATE_LOGIN_STATUS]: (state, action: Action<ILoginStatus>) => ({
       ...state,
       status: action.payload as ILoginStatus
