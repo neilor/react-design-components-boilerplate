@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
+import { routerReducer } from 'react-router-redux';
 
 import login, {
   epics as loginEpics,
@@ -13,5 +14,6 @@ export interface IRootState {
 }
 
 export const rootReducer = combineReducers<IRootState>({
-  login
+  login,
+  router: routerReducer
 });

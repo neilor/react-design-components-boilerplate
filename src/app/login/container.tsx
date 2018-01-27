@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as s from './styles.scss';
 
 import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux';
 import { IRootState } from 'app';
 import { Dispatch, bindActionCreators } from 'redux';
 
@@ -11,11 +12,12 @@ import * as LoginActions from './actions';
 interface IProps {
   data: IRootState;
   actions: typeof LoginActions;
+  router: typeof routerActions;
 }
 
 class Login extends React.Component<IProps> {
   public render() {
-    const { data: { login }, actions } = this.props;
+    const { data: { login }, actions, router } = this.props;
 
     return (
       <div className={s.container}>
@@ -56,6 +58,13 @@ class Login extends React.Component<IProps> {
               return <div>login successful !!!</div>;
           }
         })()}
+        <button
+          onClick={() => {
+            router.push('foo');
+          }}
+        >
+          foo
+        </button>
       </div>
     );
   }
@@ -69,7 +78,8 @@ function mapStateToProps(state: IRootState) {
 
 function mapDispatchToProps(dispatch: Dispatch<IRootState>) {
   return {
-    actions: bindActionCreators(LoginActions, dispatch)
+    actions: bindActionCreators(LoginActions, dispatch),
+    router: bindActionCreators(routerActions, dispatch)
   };
 }
 

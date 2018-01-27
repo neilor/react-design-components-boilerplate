@@ -2,7 +2,8 @@ import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Router, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
 import 'rxjs';
 
 import Login from 'app/login/container';
@@ -15,11 +16,12 @@ const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <ConnectedRouter history={history}>
       <Switch>
         <Route path="/" component={Login} />
+        <Route path="/foo" component={Login} />
       </Switch>
-    </Router>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
