@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import * as c from './constants';
 import * as actions from './actions';
-import { verifyLogin } from './services';
+import { verifyLogin } from 'services/login';
 
 export type ILoginStatus = 'success' | 'pristine' | 'checking' | 'failure';
 
