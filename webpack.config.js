@@ -2,6 +2,7 @@ const Webpack = require('webpack');
 const Path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.argv.indexOf('-p') >= 0;
 const outPath = Path.join(__dirname, './dist');
@@ -78,6 +79,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: 'assets',
+        to: 'assets'
+      }
+    ]),
     new Webpack.NamedModulesPlugin(),
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV':
