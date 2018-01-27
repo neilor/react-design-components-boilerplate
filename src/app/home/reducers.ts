@@ -47,11 +47,17 @@ const checkLoginEpic: Epic<Action<any>, IRootState> = (action$, store) =>
 const searchTermApiEpic: Epic<Action<any>, IRootState> = action$ =>
   action$
     .ofType(c.TERM_SEARCH_UPDATE)
-    .map((action: Action<string>) => action.payload as string)
-    .filter(x => !!x)
+    .map((action: Action<string>) => (action.payload as string).trim())
     .distinctUntilChanged()
     .debounceTime(250)
-    .switchMap(multiSearch)
-    .map(result => actions.updateResults(result.results));
+    .mergeMap(query => {
+      if (query) {
+        return Observable.of(query)
+          .switchMap(multiSearch)
+          .map(result => actions.updateResults(result.results));
+      } else {
+        return Observable.of(actions.updateResults([]));
+      }
+    });
 
 export const epics = combineEpics(checkLoginEpic, searchTermApiEpic);

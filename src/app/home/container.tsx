@@ -37,7 +37,12 @@ class Home extends React.Component<IProps, any> {
         />
         <div>
           {home.results.map(result => (
-            <div key={result.id}>{result.title}</div>
+            <div key={result.id}>
+              {result.title ||
+                result.name ||
+                result.original_name ||
+                result.original_title}
+            </div>
           ))}
         </div>
       </div>
