@@ -77,7 +77,7 @@ class Home extends React.Component<IProps, any> {
             </Link>
             {movies.now_playing &&
               movies.now_playing.results
-                .slice(0, 20)
+                .slice(0, 10)
                 .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
           </div>
           <div>
@@ -86,7 +86,7 @@ class Home extends React.Component<IProps, any> {
             </Link>
             {movies.top_rated &&
               movies.top_rated.results
-                .slice(0, 20)
+                .slice(0, 10)
                 .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
           </div>
         </div>
