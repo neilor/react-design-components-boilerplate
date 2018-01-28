@@ -24,11 +24,7 @@ class Home extends React.Component<IProps, any> {
   }
 
   public render() {
-    const { data: { login, home, movies }, actions } = this.props;
-
-    if (login.status !== 'success') {
-      return null;
-    }
+    const { data: { home, movies }, actions } = this.props;
 
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
