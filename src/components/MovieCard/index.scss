@@ -1,15 +1,36 @@
 .container {
-  width: 48.3rem;
+  width: 72rem;
   display: flex;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .rightContent {
   display: flex;
   flex-direction: column;
-  width: 29.8rem;
+  padding: 2rem;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.overview {
+  text-overflow: ellipsis;
+  height: 14rem;
+}
+
+.imageContainer {
+  width: 18.5rem;
 }
 
 .image {
   width: 18.5rem;
   height: 27.8rem;
+}
+
+.addToWatchList {
+  color: #0366d6;
+  margin-top: 1rem;
+  cursor: pointer;
 }
