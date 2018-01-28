@@ -24,7 +24,7 @@ export const verifyLogin = (loginCredentials: {
       c.id === loginCredentials.id && c.password === loginCredentials.password
   );
 
-  return Observable.of(!!found).delay(2000);
+  return Observable.of(!!found).delay(500);
 };
 
 const createWishlistKey = (id: string) => `userId:${id}`;

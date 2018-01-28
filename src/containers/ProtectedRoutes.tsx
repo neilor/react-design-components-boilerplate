@@ -9,6 +9,8 @@ import Home from 'app/home/container';
 import Movies from 'app/movies/container';
 import Wishlist from 'app/wishlist/container';
 
+import Header from 'components/Header';
+
 interface IProps {
   data: IRootState;
 }
@@ -19,6 +21,7 @@ const ProtectedRoutes = (props: IProps) => {
   if (isLoggedIn(login)) {
     return (
       <>
+        <Header />
         <Route exact path="/" component={Home} />
         <Route exact path="/movies/now_playing" component={Movies} />
         <Route exact path="/movies/top_rated" component={Movies} />
