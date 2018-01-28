@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 
 import { isLoggedIn } from 'selectors';
 import { IRootState } from 'routes';
@@ -22,6 +23,7 @@ const ProtectedRoutes = (props: IProps) => {
     return (
       <>
         <Header />
+        <ToastContainer />
         <Route exact path="/" component={Home} />
         <Route exact path="/movies/now_playing" component={Movies} />
         <Route exact path="/movies/top_rated" component={Movies} />

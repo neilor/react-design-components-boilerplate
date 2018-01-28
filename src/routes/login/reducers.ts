@@ -3,6 +3,7 @@ import { combineEpics, Epic } from 'redux-observable';
 import { routerActions } from 'react-router-redux';
 import { IRootState } from 'routes';
 import { Observable } from 'rxjs';
+import { toast } from 'react-toastify';
 
 import { IResultRow } from 'services/moviedb';
 import { verifyLogin, addToWishlist, getWishlist } from 'services/login';
@@ -90,6 +91,8 @@ const addToWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     const id = store.getState().login.id;
 
     addToWishlist(id, action.payload as IResultRow);
+
+    toast.success('Added to watchlist!', { autoClose: 2000 });
 
     return Observable.empty<never>();
   });

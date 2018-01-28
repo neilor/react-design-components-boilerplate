@@ -6,8 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "start":
-      "webpack-dev-server --debug --devtool cheap-module-source-map --output-pathinfo --history-api-fallback --hot --inline --progress --colors --port 3000 --open",
+    "start": "webpack-dev-server --debug --devtool cheap-module-source-map --output-pathinfo --history-api-fallback --hot --inline --progress --colors --port 3000 --open",
     "build": "webpack -p --progress --colors",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -34,6 +33,7 @@
     "@types/react-redux": "5.0.13",
     "@types/react-router": "4.0.18",
     "@types/react-router-redux": "^5.0.11",
+    "@types/react-transition-group": "^2.0.6",
     "@types/redux-actions": "2.2.2",
     "@types/storybook__react": "^3.0.6",
     "@types/webpack": "3.8.1",
@@ -82,6 +82,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-toastify": "^3.3.1",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-observable": "^0.17.0",
