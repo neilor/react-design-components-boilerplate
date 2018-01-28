@@ -21,21 +21,15 @@ class Wishlist extends React.Component<IProps, any> {
   }
 
   public render() {
-    const { data: { login: { wishlist } }, actions } = this.props;
+    const { data: { login: { wishlist } } } = this.props;
 
     if (!wishlist.length) {
-      return null;
+      return <h2>There are no items in your wishlist</h2>;
     }
 
     return (
       <div>
-        {wishlist.map(movie => (
-          <MovieCard
-            key={movie.id}
-            data={movie}
-            actions={{ onAddToWatchlistclick: actions.epicWishlistAdd }}
-          />
-        ))}
+        {wishlist.map(movie => <MovieCard key={movie.id} data={movie} />)}
       </div>
     );
   }

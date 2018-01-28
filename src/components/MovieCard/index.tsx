@@ -6,8 +6,8 @@ import * as s from './index.scss';
 
 interface IProps {
   data: IResultRow;
-  actions: {
-    onAddToWatchlistclick: (x: IResultRow) => void;
+  actions?: {
+    onAddToWatchlistclick?: (x: IResultRow) => void;
   };
 }
 
@@ -19,9 +19,18 @@ const MovieCard = (props: IProps) => (
       <div>{props.data.overview}</div>
       <div>{props.data.release_date}</div>
       <div>{props.data.vote_average}</div>
-      <div onClick={() => props.actions.onAddToWatchlistclick(props.data)}>
-        Add to Watchlist
-      </div>
+      {props.actions &&
+        props.actions.onAddToWatchlistclick && (
+          <div
+            onClick={() => {
+              if (props.actions && props.actions.onAddToWatchlistclick) {
+                props.actions.onAddToWatchlistclick(props.data);
+              }
+            }}
+          >
+            Add to Watchlist
+          </div>
+        )}
     </div>
   </div>
 );
