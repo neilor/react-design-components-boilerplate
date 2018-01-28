@@ -5,6 +5,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 import * as InfiniteScroll from 'react-infinite-scroller';
 
 import MovieCard from 'components/MovieCard';
+import Loader from 'components/Loader';
 
 import { IRootState } from 'routes';
 import { IMovieListType } from 'services/moviedb';
@@ -36,7 +37,7 @@ class Movies extends React.Component<IProps, any> {
         loadMore={() => {
           actions.epicGetOnScrollMovieList(movieListType);
         }}
-        loader={<div key="loading">loading...</div>}
+        loader={<Loader />}
       >
         {moviesData
           ? moviesData.results.map(result => (
