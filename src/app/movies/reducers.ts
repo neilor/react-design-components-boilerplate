@@ -1,6 +1,5 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
-import { Observable } from 'rxjs';
 
 import { IRootState } from 'app';
 import {
@@ -55,12 +54,15 @@ const getMoreMovieListEpic: Epic<Action<any>, IRootState> = (action$, store) =>
 
       const movieListData = store.getState().movies[type];
 
-      if (!movieListData) {
-        return Observable.empty<never>();
-      }
+      const page = (movieListData && movieListData.page) || 0;
 
-      return movieList(type, movieListData.page + 1).map(result =>
-        actions.updateMovieList({ type, data: result })
+      const oldResults = (movieListData && movieListData.results) || [];
+
+      return movieList(type, page + 1).map(result =>
+        actions.updateMovieList({
+          type,
+          data: { ...result, results: [...oldResults, ...result.results] }
+        })
       );
     });
 
