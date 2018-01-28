@@ -40,7 +40,7 @@ class Movies extends React.Component<IProps, any> {
       >
         {moviesData
           ? moviesData.results.map(result => (
-              <MovieCard {...result} key={result.id} />
+              <MovieCard data={result} key={result.id} />
             ))
           : []}
       </InfiniteScroll>

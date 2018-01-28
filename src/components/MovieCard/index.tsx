@@ -2,8 +2,10 @@ import * as React from 'react';
 import { IResultRow } from 'services/moviedb';
 import { getMovieName } from 'selectors';
 
-type IProps = IResultRow;
+interface IProps {
+  data: IResultRow;
+}
 
-const MovieCard = (props: IProps) => <div>{getMovieName(props)}</div>;
+const MovieCard = (props: IProps) => <div>{getMovieName(props.data)}</div>;
 
 export default MovieCard;
