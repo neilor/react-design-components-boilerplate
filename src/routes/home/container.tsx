@@ -33,9 +33,9 @@ class Home extends React.Component<IProps, any> {
     return (
       <div className={s.container}>
         <div className={s.movieList}>
-          <Link to="/movies/now_playing">
-            <h3>Now Playing</h3>
-          </Link>
+          <h3>
+            <Link to="/movies/now_playing">Now Playing</Link>
+          </h3>
           {movies.now_playing ? (
             movies.now_playing.results
               .slice(0, 10)
@@ -82,9 +82,10 @@ class Home extends React.Component<IProps, any> {
           </div>
         </ClickOutside>
         <div className={s.movieList}>
-          <Link to="/movies/top_rated">
-            <h3>Top Rated</h3>
-          </Link>
+          <h3>
+            <Link to="/movies/top_rated">Top Rated</Link>
+          </h3>
+
           {movies.top_rated ? (
             movies.top_rated.results
               .slice(0, 10)

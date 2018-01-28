@@ -50,11 +50,13 @@ describe('home movie lists', () => {
 
     cy
       .contains('Now Playing')
+      .parent()
       .siblings()
       .should('have.length', 10);
 
     cy
       .contains('Top Rated')
+      .parent()
       .siblings()
       .should('have.length', 10);
 
@@ -62,16 +64,119 @@ describe('home movie lists', () => {
   });
 });
 
-describe('home search', () => {
-  it.only('should search for all', () => {
-    doValidLogin();
-
-    cy.get('input').type('jake');
-
+const resultsAssert = open => {
+  if (open) {
     cy
       .get('input')
       .siblings('div')
       .children()
       .should('have.length.above', 0);
+  } else {
+    cy
+      .get('input')
+      .siblings('div')
+      .children()
+      .should('have.length', 0);
+  }
+};
+
+describe('home search', () => {
+  after(() => {
+    cy.contains('Logout').click();
+  });
+
+  it('should search for all', () => {
+    doValidLogin();
+
+    cy.get('input').type('jake');
+
+    resultsAssert(true);
+  });
+
+  it('should clear result when selecting other type', () => {
+    cy.get('select').select('Person');
+
+    resultsAssert(false);
+  });
+
+  it('should return result when again clicking on input box', () => {
+    cy.get('input').click();
+
+    resultsAssert(true);
+  });
+
+  it('should clear results on clicking outside', () => {
+    cy.get('body').click(400, 100);
+
+    resultsAssert(false);
+  });
+
+  it('should clear result if clear all text', () => {
+    cy.get('input').click();
+
+    resultsAssert(true);
+
+    cy.get('input').clear();
+
+    resultsAssert(false);
+  });
+});
+
+const verifyListLength = (heading = 'Top Rated', n = 1) => {
+  cy
+    .get('h1')
+    .contains(heading)
+    .siblings()
+    .then(sibs => {
+      cy
+        .wrap(sibs[1])
+        .children()
+        .then(s => {
+          cy
+            .wrap(s)
+            .children()
+            .should('have.length.above', n);
+        });
+    });
+};
+
+describe('top rated list', () => {
+  before(() => {
+    doValidLogin();
+  });
+
+  after(() => {
+    cy.contains('Logout').click();
+  });
+
+  it('should display top rated list', () => {
+    cy.contains('Top Rated').click();
+
+    verifyListLength();
+  });
+});
+
+describe('wishlist', () => {
+  before(() => {
+    doValidLogin();
+  });
+
+  after(() => {
+    cy.contains('Logout').click();
+  });
+
+  it('should add to wishlist', () => {
+    cy.contains('Top Rated').click();
+
+    verifyListLength();
+
+    cy
+      .contains('Add to Watchlist')
+      .first()
+      .click();
+  });
+
+  it('should open wishlist', () => {
+    cy.contains('Wishlist').click();
   });
 });

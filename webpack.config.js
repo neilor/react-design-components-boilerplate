@@ -35,8 +35,8 @@ module.exports = {
         use: isProduction
           ? 'awesome-typescript-loader?module=es6'
           : [
-              'istanbul-instrumenter-loader',
               'react-hot-loader/webpack',
+              'istanbul-instrumenter-loader',
               'awesome-typescript-loader'
             ]
       },
