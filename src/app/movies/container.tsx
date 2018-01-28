@@ -40,7 +40,11 @@ class Movies extends React.Component<IProps, any> {
       >
         {moviesData
           ? moviesData.results.map(result => (
-              <MovieCard data={result} key={result.id} />
+              <MovieCard
+                data={result}
+                actions={{ onAddToWatchlistclick: console.log }}
+                key={result.id}
+              />
             ))
           : []}
       </InfiniteScroll>

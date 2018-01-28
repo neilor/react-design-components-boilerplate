@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 const API_KEY = '2c94dbb2066350b2136311320000f21c';
 const BASE_URL = 'https://api.themoviedb.org/3';
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 export interface IMultiSearchResult {
   page: number;
@@ -60,3 +61,5 @@ export const movieList = (
       `${BASE_URL}/movie/${type}?api_key=${API_KEY}&page=${page}`
     ).then(response => response.json())
   );
+
+export const getImageSrc = (path: string) => `${BASE_IMG_URL}${path}`;
