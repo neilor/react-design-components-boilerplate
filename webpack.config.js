@@ -2,7 +2,6 @@ const Webpack = require('webpack');
 const Path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const isProduction = process.argv.indexOf('-p') >= 0;
@@ -81,12 +80,6 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: 'assets',
-        to: 'assets'
-      }
-    ]),
     new Webpack.NamedModulesPlugin(),
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV':

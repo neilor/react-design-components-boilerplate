@@ -4,10 +4,6 @@ import * as c from './constants';
 import * as loginActions from 'routes/login/actions';
 import { IMovieListType, IMultiSearchResult } from 'services/moviedb';
 
-export const epicGetMovieList = createAction<IMovieListType>(
-  c.EPIC_MOVIE_LIST_GET
-);
-
 export const epicGetOnScrollMovieList = createAction<IMovieListType>(
   c.MOVIE_LIST_MORE_UPDATE
 );

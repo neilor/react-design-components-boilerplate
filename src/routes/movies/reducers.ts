@@ -35,17 +35,6 @@ export default handleActions<IReducerState, never>(
   INITIAL_STATE
 );
 
-const getMovieListEpic: Epic<Action<any>, IRootState> = action$ =>
-  action$
-    .ofType(c.EPIC_MOVIE_LIST_GET)
-    .switchMap((action: Action<IMovieListType>) => {
-      const type = action.payload as IMovieListType;
-
-      return movieList(type).map(result =>
-        actions.updateMovieList({ type, data: result })
-      );
-    });
-
 const getMoreMovieListEpic: Epic<Action<any>, IRootState> = (action$, store) =>
   action$
     .ofType(c.MOVIE_LIST_MORE_UPDATE)
@@ -66,4 +55,4 @@ const getMoreMovieListEpic: Epic<Action<any>, IRootState> = (action$, store) =>
       );
     });
 
-export const epics = combineEpics(getMovieListEpic, getMoreMovieListEpic);
+export const epics = combineEpics(getMoreMovieListEpic);
