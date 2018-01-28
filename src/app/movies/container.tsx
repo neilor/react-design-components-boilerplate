@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import * as InfiniteScroll from 'react-infinite-scroller';
 
+import MovieCard from 'components/MovieCard';
+
 import { IRootState } from 'app';
 import { IMovieListType } from 'services/moviedb';
-import { getMovieName } from 'selectors';
 
 import * as moviesActions from './actions';
 
@@ -39,9 +40,7 @@ class Movies extends React.Component<IProps, any> {
       >
         {moviesData
           ? moviesData.results.map(result => (
-              <div style={{ height: 200 }} key={result.id}>
-                {getMovieName(result)}
-              </div>
+              <MovieCard {...result} key={result.id} />
             ))
           : []}
       </InfiniteScroll>
