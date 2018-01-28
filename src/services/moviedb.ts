@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 const API_KEY = '2c94dbb2066350b2136311320000f21c';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w370_and_h556_bestv2';
 
 export interface IMultiSearchResult {
   page: number;

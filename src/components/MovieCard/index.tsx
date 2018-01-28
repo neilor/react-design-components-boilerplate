@@ -13,14 +13,14 @@ interface IProps {
 
 const MovieCard = (props: IProps) => (
   <div className={s.container}>
-    <div>{getMovieName(props.data)}</div>
-    <div style={{ display: 'flex' }}>
+    <img className={s.image} src={getImageSrc(props.data.poster_path)} />
+    <div className={s.rightContent}>
+      <div>{getMovieName(props.data)}</div>
       <div>{props.data.overview}</div>
-      <img src={getImageSrc(props.data.poster_path)} />
+      <div>{props.data.release_date}</div>
+      <div>{props.data.vote_average}</div>
+      <div onClick={props.actions.onAddToWatchlistclick}>Add to Watchlist</div>
     </div>
-    <div>{props.data.release_date}</div>
-    <div>{props.data.vote_average}</div>
-    <div onClick={props.actions.onAddToWatchlistclick}>Add to Watchlist</div>
   </div>
 );
 

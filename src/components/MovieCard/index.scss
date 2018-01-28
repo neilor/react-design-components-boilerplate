@@ -1,4 +1,15 @@
 .container {
-  height: 30rem;
-  max-width: 90rem;
+  width: 48.3rem;
+  display: flex;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  width: 29.8rem;
+}
+
+.image {
+  width: 18.5rem;
+  height: 27.8rem;
 }
