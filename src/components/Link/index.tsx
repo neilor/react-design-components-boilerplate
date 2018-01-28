@@ -17,8 +17,6 @@ const Link = (props: IProps) => {
     <a
       {...rest}
       onClick={() => {
-        // e.preventDefault();
-
         actions.push(to);
       }}
     />
