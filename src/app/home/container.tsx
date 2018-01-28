@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
+import Link from 'components/Link';
+
 import { IRootState } from 'app';
 import { getMovieName } from 'selectors';
 
@@ -67,18 +69,22 @@ class Home extends React.Component<IProps, any> {
 
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
           <div>
-            <h3>Now Playing</h3>
+            <Link to="/movies/now_playing">
+              <h3>Now Playing</h3>
+            </Link>
             {movies.now_playing &&
-              movies.now_playing.results.map(movie => (
-                <div key={movie.id}>{getMovieName(movie)}</div>
-              ))}
+              movies.now_playing.results
+                .slice(0, 20)
+                .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
           </div>
           <div>
-            <h3>Top Rated</h3>
+            <Link to="/movies/top_rated">
+              <h3>Top Rated</h3>
+            </Link>
             {movies.top_rated &&
-              movies.top_rated.results.map(movie => (
-                <div key={movie.id}>{getMovieName(movie)}</div>
-              ))}
+              movies.top_rated.results
+                .slice(0, 20)
+                .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
           </div>
         </div>
       </div>
