@@ -18,3 +18,4 @@ export const updateLoginStatus = createAction<ILoginStatus>(
 
 export const epicWishlistAdd = createAction<IResultRow>(c.EPIC_ADD_TO_WISHLIST);
 export const epicWishlistGet = createAction(c.EPIC_GET_WISHLIST);
+export const wishListUpdate = createAction<IResultRow[]>(c.WISH_LIST_UPDATE);

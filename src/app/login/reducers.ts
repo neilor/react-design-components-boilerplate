@@ -5,7 +5,7 @@ import { IRootState } from 'app';
 import { Observable } from 'rxjs';
 
 import { IResultRow } from 'services/moviedb';
-import { verifyLogin, addToWishlist } from 'services/login';
+import { verifyLogin, addToWishlist, getWishlist } from 'services/login';
 
 import * as c from './constants';
 import * as actions from './actions';
@@ -16,12 +16,14 @@ export interface IReducerState {
   id: string;
   password: string;
   status: ILoginStatus;
+  wishlist: IResultRow[];
 }
 
 const INITIAL_STATE: IReducerState = {
   id: '',
   password: '',
-  status: 'pristine'
+  status: 'pristine',
+  wishlist: []
 };
 
 export default handleActions<IReducerState, never>(
@@ -55,7 +57,11 @@ export default handleActions<IReducerState, never>(
       }
 
       return newState;
-    }
+    },
+    [c.WISH_LIST_UPDATE]: (state, action: Action<IResultRow[]>) => ({
+      ...state,
+      wishlist: action.payload as IResultRow[]
+    })
   },
   INITIAL_STATE
 );
@@ -88,4 +94,17 @@ const addToWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     return Observable.empty<never>();
   });
 
-export const epics = combineEpics(checkCredentialsEpic, addToWishlistEpic);
+const getWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+  action$.ofType(c.EPIC_GET_WISHLIST).mergeMap(() => {
+    const id = store.getState().login.id;
+
+    const wishlist = getWishlist(id);
+
+    return Observable.of(actions.wishListUpdate(wishlist));
+  });
+
+export const epics = combineEpics(
+  checkCredentialsEpic,
+  addToWishlistEpic,
+  getWishlistEpic
+);

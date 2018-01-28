@@ -61,6 +61,9 @@ class Home extends React.Component<IProps, any> {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+          <Link to="/wishlist">
+            <h3>Go to wishlist</h3>
+          </Link>
           <div>
             <Link to="/movies/now_playing">
               <h3>Now Playing</h3>

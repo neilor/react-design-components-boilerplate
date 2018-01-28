@@ -56,11 +56,11 @@ export const addToWishlist = (id: string, movie: IResultRow) => {
   }
 };
 
-export const getWishlist = (id: string) => {
+export const getWishlist = (id: string): IResultRow[] => {
   const key = createWishlistKey(id);
 
   try {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key) || '[]');
   } catch (e) {
     return [];
   }

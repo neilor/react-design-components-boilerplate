@@ -7,6 +7,7 @@ import { IRootState } from 'app';
 
 import Home from 'app/home/container';
 import Movies from 'app/movies/container';
+import Wishlist from 'app/wishlist/container';
 
 interface IProps {
   data: IRootState;
@@ -21,6 +22,7 @@ const ProtectedRoutes = (props: IProps) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/movies/now_playing" component={Movies} />
         <Route exact path="/movies/top_rated" component={Movies} />
+        <Route exact path="/wishlist" component={Wishlist} />
       </>
     );
   } else {
