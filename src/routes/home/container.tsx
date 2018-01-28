@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
+import ClickOutside from 'components/ClickOutside';
 import Link from 'components/Link';
 
 import { IRootState } from 'routes';
@@ -39,7 +40,13 @@ class Home extends React.Component<IProps, any> {
               .slice(0, 10)
               .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
         </div>
-        <div>
+        <ClickOutside
+          onClickOutside={() => {
+            if (home.results.length) {
+              actions.updateResults([]);
+            }
+          }}
+        >
           <input
             value={home.searchTerm}
             onChange={e => {
@@ -69,7 +76,7 @@ class Home extends React.Component<IProps, any> {
               <div key={result.id}>{getMovieName(result)}</div>
             ))}
           </div>
-        </div>
+        </ClickOutside>
         <div>
           <Link to="/movies/top_rated">
             <h3>Top Rated</h3>
