@@ -9,6 +9,8 @@ import { getMovieName } from 'selectors';
 
 import * as HomeActions from './actions';
 
+import * as s from './styles.scss';
+
 interface IProps {
   data: IRootState;
   actions: typeof HomeActions;
@@ -27,7 +29,16 @@ class Home extends React.Component<IProps, any> {
     const { data: { home, movies }, actions } = this.props;
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className={s.container}>
+        <div>
+          <Link to="/movies/now_playing">
+            <h3>Now Playing</h3>
+          </Link>
+          {movies.now_playing &&
+            movies.now_playing.results
+              .slice(0, 10)
+              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
+        </div>
         <div>
           <input
             value={home.searchTerm}
@@ -59,26 +70,14 @@ class Home extends React.Component<IProps, any> {
             ))}
           </div>
         </div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <div>
-            <Link to="/movies/now_playing">
-              <h3>Now Playing</h3>
-            </Link>
-            {movies.now_playing &&
-              movies.now_playing.results
-                .slice(0, 10)
-                .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
-          </div>
-          <div>
-            <Link to="/movies/top_rated">
-              <h3>Top Rated</h3>
-            </Link>
-            {movies.top_rated &&
-              movies.top_rated.results
-                .slice(0, 10)
-                .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
-          </div>
+        <div>
+          <Link to="/movies/top_rated">
+            <h3>Top Rated</h3>
+          </Link>
+          {movies.top_rated &&
+            movies.top_rated.results
+              .slice(0, 10)
+              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
         </div>
       </div>
     );
