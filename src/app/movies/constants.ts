@@ -1,0 +1,4 @@
+const BASE = 'MOVIES/';
+
+export const EPIC_MOVIE_LIST_GET = `${BASE}EPIC_MOVIE_LIST_GET`;
+export const MOVIE_LIST_UPDATE = `${BASE}MOVIE_LIST_UPDATE`;

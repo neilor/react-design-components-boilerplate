@@ -49,13 +49,13 @@ export const search = (type: ISearchType = 'multi') => (
     ).then(response => response.json())
   );
 
-export type IMovieListType = 'upcoming' | 'top-rated';
+export type IMovieListType = 'now_playing' | 'top_rated';
 
-export const movieList = (type: IMovieListType) => (
-  page: number = 1
-): Observable<any> =>
+export const movieList = (
+  type: IMovieListType
+): Observable<IMultiSearchResult> =>
   Observable.from(
-    fetchJsonp(
-      `${BASE_URL}/movie/${type}?api_key=${API_KEY}&page=${page}`
-    ).then(response => response.json())
+    fetchJsonp(`${BASE_URL}/movie/${type}?api_key=${API_KEY}&page=${1}`).then(
+      response => response.json()
+    )
   );
