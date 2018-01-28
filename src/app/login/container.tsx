@@ -2,11 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
-import * as s from './styles.scss';
+import Loader from 'components/Loader';
 
 import { IRootState } from 'app';
 
 import * as LoginActions from './actions';
+
+import * as s from './styles.scss';
 
 interface IProps {
   data: IRootState;
@@ -49,7 +51,7 @@ class Login extends React.Component<IProps> {
         {(() => {
           switch (login.status) {
             case 'checking':
-              return <div>checking login credentials ...</div>;
+              return <Loader />;
             case 'failure':
               return <div>wrong id or password</div>;
             case 'success':
