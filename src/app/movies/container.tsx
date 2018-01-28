@@ -42,7 +42,7 @@ class Movies extends React.Component<IProps, any> {
           ? moviesData.results.map(result => (
               <MovieCard
                 data={result}
-                actions={{ onAddToWatchlistclick: console.log }}
+                actions={{ onAddToWatchlistclick: actions.epicWishlistAdd }}
                 key={result.id}
               />
             ))

@@ -1,5 +1,7 @@
 import { createAction } from 'redux-actions';
 
+import { IResultRow } from 'services/moviedb';
+
 import * as c from './constants';
 import { ILoginStatus } from './reducers';
 
@@ -13,3 +15,6 @@ export const checkLoginCredentials = createAction(c.CHECK_CREDENTIALS);
 export const updateLoginStatus = createAction<ILoginStatus>(
   c.UPDATE_LOGIN_STATUS
 );
+
+export const epicWishlistAdd = createAction<IResultRow>(c.EPIC_ADD_TO_WISHLIST);
+export const epicWishlistGet = createAction(c.EPIC_GET_WISHLIST);

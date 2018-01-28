@@ -4,9 +4,11 @@ import { routerActions } from 'react-router-redux';
 import { IRootState } from 'app';
 import { Observable } from 'rxjs';
 
+import { IResultRow } from 'services/moviedb';
+import { verifyLogin, addToWishlist } from 'services/login';
+
 import * as c from './constants';
 import * as actions from './actions';
-import { verifyLogin } from 'services/login';
 
 export type ILoginStatus = 'success' | 'pristine' | 'checking' | 'failure';
 
@@ -77,4 +79,13 @@ const checkCredentialsEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     );
   });
 
-export const epics = combineEpics(checkCredentialsEpic);
+const addToWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+  action$.ofType(c.EPIC_ADD_TO_WISHLIST).mergeMap(action => {
+    const id = store.getState().login.id;
+
+    addToWishlist(id, action.payload as IResultRow);
+
+    return Observable.empty<never>();
+  });
+
+export const epics = combineEpics(checkCredentialsEpic, addToWishlistEpic);

@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 
 import * as c from './constants';
+import * as loginActions from 'app/login/actions';
 import { IMovieListType, IMultiSearchResult } from 'services/moviedb';
 
 export const epicGetMovieList = createAction<IMovieListType>(
@@ -19,3 +20,5 @@ export interface IUpdateMovieListPayload {
 export const updateMovieList = createAction<IUpdateMovieListPayload>(
   c.MOVIE_LIST_UPDATE
 );
+
+export const epicWishlistAdd = loginActions.epicWishlistAdd;

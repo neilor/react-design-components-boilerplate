@@ -1,4 +1,8 @@
+import uniqueWith = require('lodash/uniqWith');
+import isEqual = require('lodash/isEqual');
+
 import { Observable } from 'rxjs/Observable';
+import { IResultRow } from 'services/moviedb';
 
 const DUMMY_LOGIN_CREDENTIALS = [
   {
@@ -21,4 +25,43 @@ export const verifyLogin = (loginCredentials: {
   );
 
   return Observable.of(!!found).delay(500);
+};
+
+const createWishlistKey = (id: string) => `userId:${id}`;
+
+export const addToWishlist = (id: string, movie: IResultRow) => {
+  try {
+    const key = createWishlistKey(id);
+
+    const wishlist: IResultRow[] = (() => {
+      try {
+        return JSON.parse(localStorage.getItem(key) || '[]');
+      } catch (e) {
+        return [];
+      }
+    })();
+
+    if (!wishlist.length) {
+      localStorage.setItem(id, JSON.stringify([movie]));
+    } else {
+      localStorage.setItem(
+        id,
+        JSON.stringify(uniqueWith([...wishlist, movie], isEqual))
+      );
+    }
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+export const getWishlist = (id: string) => {
+  const key = createWishlistKey(id);
+
+  try {
+    return localStorage.getItem(key);
+  } catch (e) {
+    return [];
+  }
 };
