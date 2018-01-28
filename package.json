@@ -4,6 +4,9 @@
   "private": true,
   "description": "A frontend boilerplate with React, Redux and Typescript",
   "main": "index.js",
+  "engines": {
+    "node": ">8"
+  },
   "scripts": {
     "coverage": "http-server coverage",
     "test": "cypress run",
