@@ -3,8 +3,11 @@ import { match as RouterMatch } from 'react-router';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import * as InfiniteScroll from 'react-infinite-scroller';
+import startCase = require('lodash/startCase');
 
+import Center from 'components/Center';
 import MovieCard from 'components/MovieCard';
+import MovieList from 'components/MovieList';
 import Loader from 'components/Loader';
 
 import { IRootState } from 'routes';
@@ -30,25 +33,34 @@ class Movies extends React.Component<IProps, any> {
     const moviesData = movies[movieListType];
 
     return (
-      <InfiniteScroll
-        hasMore={
-          (moviesData && moviesData.total_pages > moviesData.page) || true
-        }
-        loadMore={() => {
-          actions.epicGetOnScrollMovieList(movieListType);
-        }}
-        loader={<Loader />}
-      >
-        {moviesData
-          ? moviesData.results.map(result => (
-              <MovieCard
-                data={result}
-                actions={{ onAddToWatchlistclick: actions.epicWishlistAdd }}
-                key={result.id}
-              />
-            ))
-          : []}
-      </InfiniteScroll>
+      <>
+        <h1 style={{ textAlign: 'center' }}>{startCase(movieListType)}</h1>
+        <InfiniteScroll
+          hasMore={
+            (moviesData && moviesData.total_pages > moviesData.page) || true
+          }
+          loadMore={() => {
+            actions.epicGetOnScrollMovieList(movieListType);
+          }}
+          loader={<Loader />}
+        >
+          <Center>
+            <MovieList>
+              {moviesData
+                ? moviesData.results.map(result => (
+                    <MovieCard
+                      data={result}
+                      actions={{
+                        onAddToWatchlistclick: actions.epicWishlistAdd
+                      }}
+                      key={result.id}
+                    />
+                  ))
+                : []}
+            </MovieList>
+          </Center>
+        </InfiniteScroll>
+      </>
     );
   }
 }

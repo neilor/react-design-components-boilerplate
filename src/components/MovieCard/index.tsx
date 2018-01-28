@@ -1,10 +1,13 @@
 import * as React from 'react';
+import * as cx from 'classnames';
+
 import { IResultRow, getImageSrc } from 'services/moviedb';
 import { getMovieName } from 'selectors';
 
 import * as s from './index.scss';
 
 interface IProps {
+  className?: string;
   data: IResultRow;
   actions?: {
     onAddToWatchlistclick?: (x: IResultRow) => void;
@@ -12,7 +15,7 @@ interface IProps {
 }
 
 const MovieCard = (props: IProps) => (
-  <div className={s.container}>
+  <div className={cx(s.container, props.className)}>
     <div className={s.imageContainer}>
       <img className={s.image} src={getImageSrc(props.data.poster_path)} />
     </div>

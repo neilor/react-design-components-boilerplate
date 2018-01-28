@@ -1,6 +1,10 @@
+$height: 27.8rem;
+
 .container {
   width: 72rem;
+  height: $height;
   display: flex;
+  border: 1px solid #dfe3e6;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -22,11 +26,12 @@
 
 .imageContainer {
   width: 18.5rem;
+  height: $height;
 }
 
 .image {
   width: 18.5rem;
-  height: 27.8rem;
+  height: $height;
 }
 
 .addToWatchList {
