@@ -42,10 +42,10 @@ export const addToWishlist = (id: string, movie: IResultRow) => {
     })();
 
     if (!wishlist.length) {
-      localStorage.setItem(id, JSON.stringify([movie]));
+      localStorage.setItem(key, JSON.stringify([movie]));
     } else {
       localStorage.setItem(
-        id,
+        key,
         JSON.stringify(uniqueWith([...wishlist, movie], isEqual))
       );
     }
