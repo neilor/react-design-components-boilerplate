@@ -124,20 +124,9 @@ describe('home search', () => {
 
 const verifyListLength = (heading = 'Top Rated', n = 1) => {
   cy
-    .get('h1')
-    .contains(heading)
-    .siblings()
-    .then(sibs => {
-      cy
-        .wrap(sibs[1])
-        .children()
-        .then(s => {
-          cy
-            .wrap(s)
-            .children()
-            .should('have.length.above', n);
-        });
-    });
+    .get('[data-test=movie-list]')
+    .children()
+    .should('have.length.above', n);
 };
 
 describe('top rated list', () => {
@@ -171,8 +160,10 @@ describe('wishlist', () => {
     verifyListLength();
 
     cy
-      .contains('Add to Watchlist')
+      .get('[data-test=movie-list]')
+      .children()
       .first()
+      .contains('Add to Watchlist')
       .click();
   });
 
