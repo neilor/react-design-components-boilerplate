@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
 import { IRootState } from 'app';
+import { getMovieName } from 'selectors';
 
 import * as HomeActions from './actions';
 
@@ -53,12 +54,7 @@ class Home extends React.Component<IProps, any> {
         </select>
         <div>
           {home.results.map(result => (
-            <div key={result.id}>
-              {result.title ||
-                result.name ||
-                result.original_name ||
-                result.original_title}
-            </div>
+            <div key={result.id}>{getMovieName(result)}</div>
           ))}
         </div>
       </div>
