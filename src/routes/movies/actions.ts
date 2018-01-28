@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 
 import * as c from './constants';
-import * as loginActions from 'app/login/actions';
+import * as loginActions from 'routes/login/actions';
 import { IMovieListType, IMultiSearchResult } from 'services/moviedb';
 
 export const epicGetMovieList = createAction<IMovieListType>(

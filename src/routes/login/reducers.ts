@@ -1,7 +1,7 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { routerActions } from 'react-router-redux';
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 import { Observable } from 'rxjs';
 
 import { IResultRow } from 'services/moviedb';

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 
 import { isLoggedIn } from 'selectors';
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 
-import Home from 'app/home/container';
-import Movies from 'app/movies/container';
-import Wishlist from 'app/wishlist/container';
+import Home from 'routes/home/container';
+import Movies from 'routes/movies/container';
+import Wishlist from 'routes/wishlist/container';
 
 import Header from 'components/Header';
 

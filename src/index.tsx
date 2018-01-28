@@ -7,7 +7,7 @@ import 'rxjs';
 
 import ProtectedRoutes from 'containers/ProtectedRoutes';
 
-import Login from 'app/login/container';
+import Login from 'routes/login/container';
 import { configureStore, history } from 'store';
 
 import './index.scss';

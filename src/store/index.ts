@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 
 import { logger } from '../middleware';
-import { rootReducer, rootEpic, IRootState } from '../app';
+import { rootReducer, rootEpic, IRootState } from '../routes';
 
 export const history = createHistory();
 
@@ -30,8 +30,8 @@ export function configureStore(initialState?: IRootState) {
   >;
 
   if (module.hot) {
-    module.hot.accept('../app', () => {
-      const nextReducer = require('../app');
+    module.hot.accept('../routes', () => {
+      const nextReducer = require('../routes');
       store.replaceReducer(nextReducer);
     });
   }

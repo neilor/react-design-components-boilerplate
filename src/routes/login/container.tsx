@@ -4,7 +4,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 
 import Loader from 'components/Loader';
 
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 
 import * as LoginActions from './actions';
 

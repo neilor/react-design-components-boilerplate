@@ -6,7 +6,7 @@ import * as InfiniteScroll from 'react-infinite-scroller';
 
 import MovieCard from 'components/MovieCard';
 
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 import { IMovieListType } from 'services/moviedb';
 
 import * as moviesActions from './actions';

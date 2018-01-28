@@ -4,7 +4,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 
 import Link from 'components/Link';
 
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 import { getMovieName } from 'selectors';
 
 import * as HomeActions from './actions';

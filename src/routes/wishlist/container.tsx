@@ -4,9 +4,9 @@ import { Dispatch, bindActionCreators } from 'redux';
 
 import MovieCard from 'components/MovieCard';
 
-import * as loginActions from 'app/login/actions';
+import * as loginActions from 'routes/login/actions';
 
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 
 interface IProps {
   data: IRootState;

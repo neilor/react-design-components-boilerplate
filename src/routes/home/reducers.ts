@@ -2,12 +2,12 @@ import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 
-import { IRootState } from 'app';
+import { IRootState } from 'routes';
 import { IResultRow, search, ISearchType } from 'services/moviedb';
 
 import * as c from './constants';
 import * as actions from './actions';
-import * as moviesActions from 'app/movies/actions';
+import * as moviesActions from 'routes/movies/actions';
 
 export interface IReducerState {
   searchTerm: string;
