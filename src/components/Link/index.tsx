@@ -2,8 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
+import * as cx from 'classnames';
 
 import { IRootState } from 'app';
+
+import * as s from './index.scss';
 
 interface IProps extends React.HTMLAttributes<HTMLAnchorElement> {
   actions: typeof routerActions;
@@ -11,10 +14,11 @@ interface IProps extends React.HTMLAttributes<HTMLAnchorElement> {
 }
 
 const Link = (props: IProps) => {
-  const { actions, to, ...rest } = props;
+  const { actions, to, className, ...rest } = props;
 
   return (
     <a
+      className={cx(className, s.container)}
       {...rest}
       onClick={() => {
         actions.push(to);

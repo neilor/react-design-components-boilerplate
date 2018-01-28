@@ -1,3 +1,23 @@
 .container {
-  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconsGroup {
+  display: flex;
+}
+
+.icon {
+  padding: 2rem 0;
+  font-weight: 600;
+}
+
+.leftIcon {
+  @extend .icon;
+  padding-left: 4rem;
+}
+
+.rightIcon {
+  @extend .icon;
+  padding-right: 4rem;
 }

@@ -7,11 +7,19 @@ import * as s from './index.scss';
 const Header = () => {
   return (
     <div className={s.container}>
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/wishlist">Wishlist</Link>
+      <div className={s.iconsGroup}>
+        <Link className={s.leftIcon} to="/">
+          Home
+        </Link>
+        <Link className={s.leftIcon} to="/wishlist">
+          Wishlist
+        </Link>
       </div>
-      <Link to="/login">logout</Link>
+      <div className={s.iconsGroup}>
+        <Link className={s.rightIcon} to="/login">
+          Logout
+        </Link>
+      </div>
     </div>
   );
 };
