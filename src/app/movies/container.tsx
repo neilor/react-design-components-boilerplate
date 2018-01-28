@@ -22,7 +22,6 @@ class Movies extends React.Component<IProps, any> {
     const { match, actions } = this.props;
 
     const movieListType = getMovieListType(match);
-
     actions.epicGetMovieList(movieListType);
   }
 
@@ -33,15 +32,14 @@ class Movies extends React.Component<IProps, any> {
 
     const moviesData = movies[movieListType];
 
-    if (!moviesData) {
-      return null;
-    }
-
     return (
       <div>
-        {moviesData.results.map(result => (
-          <div key={result.id}>{result.title || result.name}</div>
-        ))}
+        {moviesData &&
+          moviesData.results.map(result => (
+            <div style={{ height: 200 }} key={result.id}>
+              {result.title || result.name}
+            </div>
+          ))}
       </div>
     );
   }
