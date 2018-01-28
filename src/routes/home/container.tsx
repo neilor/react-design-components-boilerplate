@@ -4,6 +4,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 
 import ClickOutside from 'components/ClickOutside';
 import Link from 'components/Link';
+import Loader from 'components/Loader';
 
 import { IRootState } from 'routes';
 import { getMovieName } from 'selectors';
@@ -31,14 +32,17 @@ class Home extends React.Component<IProps, any> {
 
     return (
       <div className={s.container}>
-        <div>
+        <div className={s.movieList}>
           <Link to="/movies/now_playing">
             <h3>Now Playing</h3>
           </Link>
-          {movies.now_playing &&
+          {movies.now_playing ? (
             movies.now_playing.results
               .slice(0, 10)
-              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
+              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)
+          ) : (
+            <Loader />
+          )}
         </div>
         <ClickOutside
           onClickOutside={() => {
@@ -77,14 +81,17 @@ class Home extends React.Component<IProps, any> {
             ))}
           </div>
         </ClickOutside>
-        <div>
+        <div className={s.movieList}>
           <Link to="/movies/top_rated">
             <h3>Top Rated</h3>
           </Link>
-          {movies.top_rated &&
+          {movies.top_rated ? (
             movies.top_rated.results
               .slice(0, 10)
-              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)}
+              .map(movie => <div key={movie.id}>{getMovieName(movie)}</div>)
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     );
