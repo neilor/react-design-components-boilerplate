@@ -21,43 +21,46 @@ class Login extends React.Component<IProps> {
 
     return (
       <div className={s.container}>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
+        <div className={s.form}>
+          <h1>Login</h1>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
 
-            actions.checkLoginCredentials();
-          }}
-        >
-          <input
-            value={login.id}
-            placeholder="id"
-            autoFocus={login.status === 'failure'}
-            onChange={e => {
-              const target = e.target as HTMLInputElement;
-              actions.editField({ value: target.value, key: 'id' });
+              actions.checkLoginCredentials();
             }}
-          />
-          <input
-            value={login.password}
-            placeholder="password"
-            type="password"
-            onChange={e => {
-              const target = e.target as HTMLInputElement;
-              actions.editField({ value: target.value, key: 'password' });
-            }}
-          />
-          <button type="submit">Login</button>
-        </form>
-        {(() => {
-          switch (login.status) {
-            case 'checking':
-              return <Loader />;
-            case 'failure':
-              return <div>wrong id or password</div>;
-            case 'success':
-              return <div>login successful !!!</div>;
-          }
-        })()}
+          >
+            <input
+              value={login.id}
+              placeholder="id"
+              autoFocus={login.status === 'failure'}
+              onChange={e => {
+                const target = e.target as HTMLInputElement;
+                actions.editField({ value: target.value, key: 'id' });
+              }}
+            />
+            <input
+              value={login.password}
+              placeholder="password"
+              type="password"
+              onChange={e => {
+                const target = e.target as HTMLInputElement;
+                actions.editField({ value: target.value, key: 'password' });
+              }}
+            />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <div className={s.status}>
+          {(() => {
+            switch (login.status) {
+              case 'checking':
+                return <Loader />;
+              case 'failure':
+                return <div>wrong id or password</div>;
+            }
+          })()}
+        </div>
       </div>
     );
   }
