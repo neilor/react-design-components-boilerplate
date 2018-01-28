@@ -57,7 +57,7 @@ class Login extends React.Component<IProps> {
               case 'checking':
                 return <Loader />;
               case 'failure':
-                return <div>wrong id or password</div>;
+                return <div className={s.error}>wrong id or password</div>;
             }
           })()}
         </div>
