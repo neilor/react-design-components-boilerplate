@@ -8,6 +8,7 @@ import { IResultRow, search, ISearchType } from 'services/moviedb';
 
 import * as c from './constants';
 import * as actions from './actions';
+import * as moviesActions from 'app/movies/actions';
 
 export interface IReducerState {
   searchTerm: string;
@@ -79,8 +80,19 @@ const onFocusSearchEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     }
   });
 
+const updateMoviesListsEpic: Epic<Action<any>, IRootState> = action$ =>
+  action$
+    .ofType(c.EPIC_MOVIES_LISTS_UPDATE)
+    .mergeMap(() =>
+      Observable.concat(
+        Observable.of(moviesActions.epicGetOnScrollMovieList('top_rated')),
+        Observable.of(moviesActions.epicGetOnScrollMovieList('now_playing'))
+      )
+    );
+
 export const epics = combineEpics(
   checkLoginEpic,
   searchTermApiEpic,
-  onFocusSearchEpic
+  onFocusSearchEpic,
+  updateMoviesListsEpic
 );

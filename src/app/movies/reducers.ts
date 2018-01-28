@@ -49,7 +49,7 @@ const getMovieListEpic: Epic<Action<any>, IRootState> = action$ =>
 const getMoreMovieListEpic: Epic<Action<any>, IRootState> = (action$, store) =>
   action$
     .ofType(c.MOVIE_LIST_MORE_UPDATE)
-    .switchMap((action: Action<IMovieListType>) => {
+    .mergeMap((action: Action<IMovieListType>) => {
       const type = action.payload as IMovieListType;
 
       const movieListData = store.getState().movies[type];
