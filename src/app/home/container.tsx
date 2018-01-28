@@ -16,12 +16,15 @@ interface IProps {
 
 class Home extends React.Component<IProps, any> {
   public componentDidMount() {
-    const { actions } = this.props;
+    const { data: { login, movies }, actions } = this.props;
 
     actions.epicCheckLogin();
 
-    const { data: { login } } = this.props;
-    if (login.status === 'success') {
+    if (login.status !== 'success') {
+      return;
+    }
+
+    if (!movies.now_playing && !movies.top_rated) {
       actions.epicUpdateMoviesList();
     }
   }
