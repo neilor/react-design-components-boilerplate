@@ -1,7 +1,6 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
-import { routerActions } from 'react-router-redux';
 
 import { IRootState } from 'app';
 import { IResultRow, search, ISearchType } from 'services/moviedb';
@@ -40,17 +39,6 @@ export default handleActions<IReducerState, never>(
   },
   INITIAL_STATE
 );
-
-const checkLoginEpic: Epic<Action<any>, IRootState> = (action$, store) =>
-  action$.ofType(c.EPIC_LOGIN_CHECK).mergeMap(() => {
-    const loginState = store.getState().login;
-
-    if (loginState.status !== 'success') {
-      return Observable.of(routerActions.push('/login'));
-    }
-
-    return Observable.empty<never>();
-  });
 
 const searchTermApiEpic: Epic<Action<any>, IRootState> = (action$, store) =>
   action$
@@ -91,7 +79,6 @@ const updateMoviesListsEpic: Epic<Action<any>, IRootState> = action$ =>
     );
 
 export const epics = combineEpics(
-  checkLoginEpic,
   searchTermApiEpic,
   onFocusSearchEpic,
   updateMoviesListsEpic
