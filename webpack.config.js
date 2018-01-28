@@ -34,7 +34,11 @@ module.exports = {
         test: /\.tsx?$/,
         use: isProduction
           ? 'awesome-typescript-loader?module=es6'
-          : ['react-hot-loader/webpack', 'awesome-typescript-loader']
+          : [
+              'istanbul-instrumenter-loader',
+              'react-hot-loader/webpack',
+              'awesome-typescript-loader'
+            ]
       },
       // s?css
       {

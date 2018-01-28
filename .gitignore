@@ -5,3 +5,5 @@ node_modules
 *.log*
 build
 dist
+.nyc_output
+coverage
