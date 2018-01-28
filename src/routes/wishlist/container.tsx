@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
+import Center from 'components/Center';
+import MovieList from 'components/MovieList';
 import MovieCard from 'components/MovieCard';
 
 import * as loginActions from 'routes/login/actions';
@@ -24,13 +26,22 @@ class Wishlist extends React.Component<IProps, any> {
     const { data: { login: { wishlist } } } = this.props;
 
     if (!wishlist.length) {
-      return <h2>There are no items in your wishlist</h2>;
+      return (
+        <Center>
+          <h2>There are no items in your wishlist</h2>
+        </Center>
+      );
     }
 
     return (
-      <div>
-        {wishlist.map(movie => <MovieCard key={movie.id} data={movie} />)}
-      </div>
+      <>
+        <h1 style={{ textAlign: 'center' }}>Wishlist</h1>
+        <Center>
+          <MovieList>
+            {wishlist.map(movie => <MovieCard key={movie.id} data={movie} />)}
+          </MovieList>
+        </Center>
+      </>
     );
   }
 }
