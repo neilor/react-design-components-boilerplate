@@ -22,7 +22,6 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@bahmutov/add-typescript-to-cypress": "^2.0.0",
     "@storybook/addon-actions": "^3.3.11",
     "@storybook/addon-links": "^3.3.11",
     "@storybook/addons": "^3.3.11",
