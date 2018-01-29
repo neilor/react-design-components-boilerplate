@@ -5,7 +5,7 @@
   "description": "A frontend boilerplate with React, Redux and Typescript",
   "main": "index.js",
   "engines": {
-    "node": ">8"
+    "node": ">=8"
   },
   "scripts": {
     "coverage": "http-server coverage",
