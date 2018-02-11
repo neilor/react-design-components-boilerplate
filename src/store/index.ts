@@ -31,8 +31,12 @@ export function configureStore(initialState?: IRootState) {
 
   if (module.hot) {
     module.hot.accept('../routes', () => {
-      const { rootReducer: nextRootReducer } = require('../routes');
+      const {
+        rootReducer: nextRootReducer,
+        rootEpic: nextRootEpic
+      } = require('../routes');
       store.replaceReducer(nextRootReducer);
+      epicMiddleware.replaceEpic(nextRootEpic);
     });
   }
 
