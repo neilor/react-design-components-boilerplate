@@ -22,10 +22,16 @@ import {
 
 export const rootEpic = combineEpics(loginEpics, homeEpics, moviesEpics);
 
+export namespace rootState {
+  export type login = ILoginState;
+  export type home = IHomeState;
+  export type movies = IMoviesState;
+}
+
 export interface IRootState {
-  login: ILoginState;
-  home: IHomeState;
-  movies: IMoviesState;
+  login: rootState.login;
+  home: rootState.home;
+  movies: rootState.movies;
 }
 
 export const rootReducer = combineReducers<IRootState>({
