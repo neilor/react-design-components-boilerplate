@@ -8,11 +8,9 @@ import 'rxjs';
 import ProtectedRoutes from 'containers/ProtectedRoutes';
 
 import Login from 'routes/login/container';
-import { configureStore, history } from 'store';
+import store, { history } from 'store';
 
 import './index.scss';
-
-const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,3 +23,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+if (module.hot) {
+  module.hot.accept();
+}

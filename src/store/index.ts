@@ -31,10 +31,12 @@ export function configureStore(initialState?: IRootState) {
 
   if (module.hot) {
     module.hot.accept('../routes', () => {
-      const nextReducer = require('../routes');
-      store.replaceReducer(nextReducer);
+      const { rootReducer: nextRootReducer } = require('../routes');
+      store.replaceReducer(nextRootReducer);
     });
   }
 
   return store;
 }
+
+export default configureStore();
