@@ -2,16 +2,17 @@ import { Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 
+import { isActionOf } from 'typesafe-actions';
+
 import { IRootState, IRootAction } from '@reducers';
 import { actions as moviesActions } from '@reducers/movies';
 import { search } from '@services/moviedb';
 
 import actions from './actions';
-import c from './constants';
 
 const searchTermApiEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$
-    .ofType(c.TERM_SEARCH_UPDATE)
+    .filter(isActionOf(actions.updateSearchTerm))
     .map((action: Action<string>) => (action.payload as string).trim())
     .debounceTime(250)
     .mergeMap(query => {
@@ -27,7 +28,7 @@ const searchTermApiEpic: Epic<IRootAction, IRootState> = (action$, store) =>
     });
 
 const onFocusSearchEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.ofType(c.EPIC_ON_FOCUS_SEARCH).mergeMap(() => {
+  action$.filter(isActionOf(actions.epicSearchOnFocus)).mergeMap(() => {
     const home = store.getState().home;
 
     if (home.results.length === 0) {
@@ -39,7 +40,7 @@ const onFocusSearchEpic: Epic<IRootAction, IRootState> = (action$, store) =>
 
 const updateMoviesListsEpic: Epic<IRootAction, IRootState> = action$ =>
   action$
-    .ofType(c.EPIC_MOVIES_LISTS_UPDATE)
+    .filter(isActionOf(actions.epicUpdateMoviesList))
     .mergeMap(() =>
       Observable.concat(
         Observable.of(moviesActions.epicGetOnScrollMovieList('top_rated')),

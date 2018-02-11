@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 
 import { toast } from 'react-toastify';
 
+import { isActionOf } from 'typesafe-actions';
+
 import { IRootState, IRootAction } from '@reducers';
 import { verifyLogin, addToWishlist, getWishlist } from '@services/login';
 import { IResultRow } from '@services/moviedb';
 
 import actions from './actions';
-import c from './constants';
 
 const checkCredentialsEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.ofType(c.CHECK_CREDENTIALS).mergeMap(() => {
+  action$.filter(isActionOf(actions.checkLoginCredentials)).mergeMap(() => {
     const loginState = store.getState().login;
 
     return Observable.concat(
@@ -31,7 +32,7 @@ const checkCredentialsEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   });
 
 const addToWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.ofType(c.EPIC_ADD_TO_WISHLIST).mergeMap(action => {
+  action$.filter(isActionOf(actions.epicWishlistAdd)).mergeMap(action => {
     const id = store.getState().login.id;
 
     addToWishlist(id, action.payload as IResultRow);
@@ -42,7 +43,7 @@ const addToWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   });
 
 const getWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.ofType(c.EPIC_GET_WISHLIST).mergeMap(() => {
+  action$.filter(isActionOf(actions.epicWishlistGet)).mergeMap(() => {
     const id = store.getState().login.id;
 
     const wishlist = getWishlist(id);
