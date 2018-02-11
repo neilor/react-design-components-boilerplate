@@ -1,13 +1,13 @@
 import { Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 
-import { IRootState } from '@reducers';
+import { IRootState, IRootAction } from '@reducers';
 import { IMovieListType, movieList } from '@services/moviedb';
 
 import actions from './actions';
 import c from './constants';
 
-const getMoreMovieListEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+const getMoreMovieListEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$
     .ofType(c.MOVIE_LIST_MORE_UPDATE)
     .mergeMap((action: Action<IMovieListType>) => {

@@ -14,9 +14,10 @@
     "noUnusedLocals": true,
     "removeComments": true,
     "strictNullChecks": true,
+    "skipLibCheck": true,
     "baseUrl": "src",
     "outDir": "build",
-    "lib": ["es6", "es7", "dom"]
+    "lib": ["es6", "es7", "es2017", "dom"]
   },
   "exclude": ["dist", "build", "node_modules"]
 }

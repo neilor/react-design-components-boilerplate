@@ -1,18 +1,17 @@
 import { routerActions } from 'react-router-redux';
-import { Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs';
 
 import { toast } from 'react-toastify';
 
-import { IRootState } from '@reducers';
+import { IRootState, IRootAction } from '@reducers';
 import { verifyLogin, addToWishlist, getWishlist } from '@services/login';
 import { IResultRow } from '@services/moviedb';
 
 import actions from './actions';
 import c from './constants';
 
-const checkCredentialsEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+const checkCredentialsEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$.ofType(c.CHECK_CREDENTIALS).mergeMap(() => {
     const loginState = store.getState().login;
 
@@ -31,7 +30,7 @@ const checkCredentialsEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     );
   });
 
-const addToWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+const addToWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$.ofType(c.EPIC_ADD_TO_WISHLIST).mergeMap(action => {
     const id = store.getState().login.id;
 
@@ -42,7 +41,7 @@ const addToWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
     return Observable.empty<never>();
   });
 
-const getWishlistEpic: Epic<Action<any>, IRootState> = (action$, store) =>
+const getWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$.ofType(c.EPIC_GET_WISHLIST).mergeMap(() => {
     const id = store.getState().login.id;
 

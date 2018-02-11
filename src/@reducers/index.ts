@@ -1,20 +1,23 @@
-import { routerReducer } from 'react-router-redux';
+import { routerReducer, RouterAction } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
 
 import {
+  IActions as ILoginActions,
   reducers as loginReducers,
   epics as loginEpics,
   IReducerState as ILoginState
 } from './login';
 
 import {
+  IActions as IHomeActions,
   reducers as homeReducers,
   epics as homeEpics,
   IReducerState as IHomeState
 } from './home';
 
 import {
+  IActions as IMoviesActions,
   reducers as moviesReducers,
   epics as moviesEpics,
   IReducerState as IMoviesState
@@ -40,3 +43,9 @@ export const rootReducer = combineReducers<IRootState>({
   movies: moviesReducers,
   router: routerReducer
 });
+
+export type IRootAction =
+  | RouterAction
+  | IHomeActions
+  | ILoginActions
+  | IMoviesActions;
