@@ -6,9 +6,9 @@ import { ToastContainer } from 'react-toastify';
 import { IRootState } from '@reducers';
 import { isLoggedIn } from '@selectors';
 
-import Home from '@reducers/home/container';
-import Movies from '@reducers/movies/container';
-import Wishlist from '@reducers/wishlist/container';
+import Home from '@routes/home';
+import MoviesList from '@routes/moviesList';
+import Wishlist from '@routes/wishlist';
 
 import Header from '@components/Header';
 
@@ -25,8 +25,8 @@ const ProtectedRoutes = (props: IProps) => {
         <Header />
         <ToastContainer />
         <Route exact path="/" component={Home} />
-        <Route exact path="/movies/now_playing" component={Movies} />
-        <Route exact path="/movies/top_rated" component={Movies} />
+        <Route exact path="/movies/now_playing" component={MoviesList} />
+        <Route exact path="/movies/top_rated" component={MoviesList} />
         <Route exact path="/wishlist" component={Wishlist} />
       </>
     );

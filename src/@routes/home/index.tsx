@@ -11,7 +11,7 @@ import { getMovieName } from '@selectors';
 
 import * as HomeActions from '@reducers/home/actions';
 
-import * as s from './styles.scss';
+import * as s from './index.scss';
 
 interface IProps {
   data: IRootState;
