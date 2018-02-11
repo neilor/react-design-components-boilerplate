@@ -4,8 +4,8 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createEpicMiddleware } from 'redux-observable';
 
-import { logger } from '@middleware';
 import { rootReducer, rootEpic, IRootState } from '@reducers';
+import { logger } from '@store/middleware';
 
 export const history = createHistory();
 
