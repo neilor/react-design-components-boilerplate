@@ -2,10 +2,11 @@ import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
 
-import login, {
+import {
+  reducers as loginReducers,
   epics as loginEpics,
   IReducerState as ILoginState
-} from './login/reducers';
+} from './login';
 
 import {
   reducers as homeReducers,
@@ -27,7 +28,7 @@ export interface IRootState {
 }
 
 export const rootReducer = combineReducers<IRootState>({
-  login,
+  login: loginReducers,
   home: homeReducers,
   movies,
   router: routerReducer

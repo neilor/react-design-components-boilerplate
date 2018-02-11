@@ -6,7 +6,7 @@ import Center from '@components/Center';
 import MovieCard from '@components/MovieCard';
 import MovieList from '@components/MovieList';
 
-import * as loginActions from '@reducers/login/actions';
+import { actions as loginActions } from '@reducers/login';
 
 import { IRootState } from '@reducers';
 
