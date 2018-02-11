@@ -7,7 +7,7 @@ import 'rxjs';
 
 import ProtectedRoutes from '@containers/ProtectedRoutes';
 
-import Login from '@reducers/login/container';
+import Login from '@routes/login';
 import store, { history } from '@store';
 
 import './index.scss';

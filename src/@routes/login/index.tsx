@@ -6,7 +6,7 @@ import Loader from '@components/Loader';
 import { IRootState } from '@reducers';
 import * as LoginActions from '@reducers/login/actions';
 
-import * as s from './styles.scss';
+import * as s from './index.scss';
 
 interface IProps {
   data: IRootState;
