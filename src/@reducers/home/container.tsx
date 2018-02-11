@@ -9,7 +9,7 @@ import Loader from '@components/Loader';
 import { IRootState } from '@reducers';
 import { getMovieName } from '@selectors';
 
-import * as HomeActions from './actions';
+import * as HomeActions from '@reducers/home/actions';
 
 import * as s from './styles.scss';
 

@@ -8,8 +8,8 @@ import {
   movieList
 } from '@services/moviedb';
 
-import * as c from './constants';
 import * as actions from './actions';
+import * as c from './constants';
 
 export interface IReducerState {
   top_rated?: IMultiSearchResult;

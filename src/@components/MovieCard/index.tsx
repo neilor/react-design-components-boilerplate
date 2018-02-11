@@ -1,8 +1,9 @@
 import * as React from 'react';
+
 import * as cx from 'classnames';
 
-import { IResultRow, getImageSrc } from '@services/moviedb';
 import { getMovieName } from '@selectors';
+import { IResultRow, getImageSrc } from '@services/moviedb';
 
 import * as s from './index.scss';
 

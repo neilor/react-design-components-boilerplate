@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
-import { isLoggedIn } from '@selectors';
 import { IRootState } from '@reducers';
+import { isLoggedIn } from '@selectors';
 
 import Home from '@reducers/home/container';
 import Movies from '@reducers/movies/container';

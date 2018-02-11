@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { match as RouterMatch } from 'react-router';
 import { connect } from 'react-redux';
+import { match as RouterMatch } from 'react-router';
 import { Dispatch, bindActionCreators } from 'redux';
-import * as InfiniteScroll from 'react-infinite-scroller';
+
 import startCase = require('lodash/startCase');
+import * as InfiniteScroll from 'react-infinite-scroller';
 
 import Center from '@components/Center';
+import Loader from '@components/Loader';
 import MovieCard from '@components/MovieCard';
 import MovieList from '@components/MovieList';
-import Loader from '@components/Loader';
 
 import { IRootState } from '@reducers';
+import * as moviesActions from '@reducers/movies/actions';
 import { IMovieListType } from '@services/moviedb';
-
-import * as moviesActions from './actions';
 
 interface IProps {
   match: RouterMatch<{}>;

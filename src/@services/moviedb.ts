@@ -1,6 +1,6 @@
 import * as fetchJsonp from 'fetch-jsonp';
-import { Observable } from 'rxjs/Observable';
 import { toast } from 'react-toastify';
+import { Observable } from 'rxjs/Observable';
 
 const API_KEY = '2c94dbb2066350b2136311320000f21c';
 const BASE_URL = 'https://api.themoviedb.org/3';

@@ -1,6 +1,6 @@
+import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
-import { routerReducer } from 'react-router-redux';
 
 import login, {
   epics as loginEpics,

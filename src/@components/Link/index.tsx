@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch, bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
+import { Dispatch, bindActionCreators } from 'redux';
+
 import * as cx from 'classnames';
 
 import { IRootState } from '@reducers';

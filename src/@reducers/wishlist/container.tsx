@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
 import Center from '@components/Center';
-import MovieList from '@components/MovieList';
 import MovieCard from '@components/MovieCard';
+import MovieList from '@components/MovieList';
 
 import * as loginActions from '@reducers/login/actions';
 

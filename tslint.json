@@ -5,6 +5,12 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "member-ordering": false,
-    "ordered-imports": false
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "lowercase-first",
+        "named-imports-order": "any"
+      }
+    ]
   }
 }

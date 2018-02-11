@@ -3,11 +3,11 @@ import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 
 import { IRootState } from '@reducers';
+import * as moviesActions from '@reducers/movies/actions';
 import { IResultRow, search, ISearchType } from '@services/moviedb';
 
-import * as c from './constants';
 import * as actions from './actions';
-import * as moviesActions from '@reducers/movies/actions';
+import * as c from './constants';
 
 export interface IReducerState {
   searchTerm: string;
