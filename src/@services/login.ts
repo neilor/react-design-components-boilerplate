@@ -2,7 +2,7 @@ import uniqueWith = require('lodash/uniqWith');
 import isEqual = require('lodash/isEqual');
 
 import { Observable } from 'rxjs/Observable';
-import { IResultRow } from 'services/moviedb';
+import { IResultRow } from '@services/moviedb';
 
 const DUMMY_LOGIN_CREDENTIALS = [
   {

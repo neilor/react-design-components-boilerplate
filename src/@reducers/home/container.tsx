@@ -2,12 +2,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
-import ClickOutside from 'components/ClickOutside';
-import Link from 'components/Link';
-import Loader from 'components/Loader';
+import ClickOutside from '@components/ClickOutside';
+import Link from '@components/Link';
+import Loader from '@components/Loader';
 
-import { IRootState } from 'reducers';
-import { getMovieName } from 'selectors';
+import { IRootState } from '@reducers';
+import { getMovieName } from '@selectors';
 
 import * as HomeActions from './actions';
 

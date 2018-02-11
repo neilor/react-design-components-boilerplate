@@ -5,10 +5,10 @@ import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import 'rxjs';
 
-import ProtectedRoutes from 'containers/ProtectedRoutes';
+import ProtectedRoutes from '@containers/ProtectedRoutes';
 
-import Login from 'reducers/login/container';
-import store, { history } from 'store';
+import Login from '@reducers/login/container';
+import store, { history } from '@store';
 
 import './index.scss';
 

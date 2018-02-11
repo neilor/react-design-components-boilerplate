@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
-import { isLoggedIn } from 'selectors';
-import { IRootState } from 'reducers';
+import { isLoggedIn } from '@selectors';
+import { IRootState } from '@reducers';
 
-import Home from 'reducers/home/container';
-import Movies from 'reducers/movies/container';
-import Wishlist from 'reducers/wishlist/container';
+import Home from '@reducers/home/container';
+import Movies from '@reducers/movies/container';
+import Wishlist from '@reducers/wishlist/container';
 
-import Header from 'components/Header';
+import Header from '@components/Header';
 
 interface IProps {
   data: IRootState;

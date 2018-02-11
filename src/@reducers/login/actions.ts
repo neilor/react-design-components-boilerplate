@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-import { IResultRow } from 'services/moviedb';
+import { IResultRow } from '@services/moviedb';
 
 import * as c from './constants';
 import { ILoginStatus } from './reducers';

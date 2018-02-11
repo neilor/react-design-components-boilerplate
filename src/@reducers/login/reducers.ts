@@ -1,12 +1,12 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { routerActions } from 'react-router-redux';
-import { IRootState } from 'reducers';
+import { IRootState } from '@reducers';
 import { Observable } from 'rxjs';
 import { toast } from 'react-toastify';
 
-import { IResultRow } from 'services/moviedb';
-import { verifyLogin, addToWishlist, getWishlist } from 'services/login';
+import { IResultRow } from '@services/moviedb';
+import { verifyLogin, addToWishlist, getWishlist } from '@services/login';
 
 import * as c from './constants';
 import * as actions from './actions';

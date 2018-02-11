@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
-import Loader from 'components/Loader';
+import Loader from '@components/Loader';
 
-import { IRootState } from 'reducers';
+import { IRootState } from '@reducers';
 
 import * as LoginActions from './actions';
 

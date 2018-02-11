@@ -1,12 +1,12 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 
-import { IRootState } from 'reducers';
+import { IRootState } from '@reducers';
 import {
   IMultiSearchResult,
   IMovieListType,
   movieList
-} from 'services/moviedb';
+} from '@services/moviedb';
 
 import * as c from './constants';
 import * as actions from './actions';

@@ -5,13 +5,13 @@ import { Dispatch, bindActionCreators } from 'redux';
 import * as InfiniteScroll from 'react-infinite-scroller';
 import startCase = require('lodash/startCase');
 
-import Center from 'components/Center';
-import MovieCard from 'components/MovieCard';
-import MovieList from 'components/MovieList';
-import Loader from 'components/Loader';
+import Center from '@components/Center';
+import MovieCard from '@components/MovieCard';
+import MovieList from '@components/MovieList';
+import Loader from '@components/Loader';
 
-import { IRootState } from 'reducers';
-import { IMovieListType } from 'services/moviedb';
+import { IRootState } from '@reducers';
+import { IMovieListType } from '@services/moviedb';
 
 import * as moviesActions from './actions';
 

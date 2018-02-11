@@ -2,13 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 
-import Center from 'components/Center';
-import MovieList from 'components/MovieList';
-import MovieCard from 'components/MovieCard';
+import Center from '@components/Center';
+import MovieList from '@components/MovieList';
+import MovieCard from '@components/MovieCard';
 
-import * as loginActions from 'reducers/login/actions';
+import * as loginActions from '@reducers/login/actions';
 
-import { IRootState } from 'reducers';
+import { IRootState } from '@reducers';
 
 interface IProps {
   data: IRootState;
