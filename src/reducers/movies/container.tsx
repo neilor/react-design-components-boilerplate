@@ -10,7 +10,7 @@ import MovieCard from 'components/MovieCard';
 import MovieList from 'components/MovieList';
 import Loader from 'components/Loader';
 
-import { IRootState } from 'routes';
+import { IRootState } from 'reducers';
 import { IMovieListType } from 'services/moviedb';
 
 import * as moviesActions from './actions';

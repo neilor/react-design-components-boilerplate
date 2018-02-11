@@ -1,7 +1,7 @@
 import { handleActions, Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 
-import { IRootState } from 'routes';
+import { IRootState } from 'reducers';
 import {
   IMultiSearchResult,
   IMovieListType,

@@ -4,7 +4,7 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
 import * as cx from 'classnames';
 
-import { IRootState } from 'routes';
+import { IRootState } from 'reducers';
 
 import * as s from './index.scss';
 

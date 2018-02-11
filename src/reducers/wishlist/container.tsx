@@ -6,9 +6,9 @@ import Center from 'components/Center';
 import MovieList from 'components/MovieList';
 import MovieCard from 'components/MovieCard';
 
-import * as loginActions from 'routes/login/actions';
+import * as loginActions from 'reducers/login/actions';
 
-import { IRootState } from 'routes';
+import { IRootState } from 'reducers';
 
 interface IProps {
   data: IRootState;

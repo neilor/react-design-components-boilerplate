@@ -4,11 +4,11 @@ import { Route, Redirect } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
 import { isLoggedIn } from 'selectors';
-import { IRootState } from 'routes';
+import { IRootState } from 'reducers';
 
-import Home from 'routes/home/container';
-import Movies from 'routes/movies/container';
-import Wishlist from 'routes/wishlist/container';
+import Home from 'reducers/home/container';
+import Movies from 'reducers/movies/container';
+import Wishlist from 'reducers/wishlist/container';
 
 import Header from 'components/Header';
 
