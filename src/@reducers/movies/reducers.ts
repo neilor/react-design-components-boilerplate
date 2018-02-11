@@ -2,8 +2,7 @@ import { handleActions, Action } from 'redux-actions';
 
 import { IMultiSearchResult } from '@services/moviedb';
 
-import { IUpdateMovieListPayload } from './actions';
-import c from './constants';
+import actions, { IUpdateMovieListPayload } from './actions';
 
 export interface IReducerState {
   top_rated?: IMultiSearchResult;
@@ -14,7 +13,10 @@ const INITIAL_STATE: IReducerState = {};
 
 export default handleActions<IReducerState, never>(
   {
-    [c.MOVIE_LIST_UPDATE]: (state, action: Action<IUpdateMovieListPayload>) => {
+    [actions.updateMovieList.toString()]: (
+      state,
+      action: Action<IUpdateMovieListPayload>
+    ) => {
       const payload = action.payload as IUpdateMovieListPayload;
 
       return {

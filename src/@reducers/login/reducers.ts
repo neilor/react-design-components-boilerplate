@@ -2,8 +2,7 @@ import { handleActions, Action } from 'redux-actions';
 
 import { IResultRow } from '@services/moviedb';
 
-import { IEditFieldPayload } from './actions';
-import c from './constants';
+import actions, { IEditFieldPayload } from './actions';
 
 export type ILoginStatus = 'success' | 'pristine' | 'checking' | 'failure';
 
@@ -23,7 +22,10 @@ const INITIAL_STATE: IReducerState = {
 
 export default handleActions<IReducerState, never>(
   {
-    [c.LOGIN_EDIT_FIELD]: (state, action: Action<IEditFieldPayload>) => {
+    [actions.editField.toString()]: (
+      state,
+      action: Action<IEditFieldPayload>
+    ) => {
       const payload = action.payload as IEditFieldPayload;
 
       const newState = {
@@ -37,7 +39,10 @@ export default handleActions<IReducerState, never>(
 
       return newState;
     },
-    [c.UPDATE_LOGIN_STATUS]: (state, action: Action<ILoginStatus>) => {
+    [actions.updateLoginStatus.toString()]: (
+      state,
+      action: Action<ILoginStatus>
+    ) => {
       const newState = {
         ...state,
         status: action.payload as ILoginStatus
@@ -50,7 +55,10 @@ export default handleActions<IReducerState, never>(
 
       return newState;
     },
-    [c.WISH_LIST_UPDATE]: (state, action: Action<IResultRow[]>) => ({
+    [actions.wishListUpdate.toString()]: (
+      state,
+      action: Action<IResultRow[]>
+    ) => ({
       ...state,
       wishlist: action.payload as IResultRow[]
     })
