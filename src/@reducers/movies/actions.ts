@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions';
+import { createAction } from 'typesafe-actions';
 
 import { $call } from 'utility-types';
 
@@ -13,10 +13,20 @@ export interface IUpdateMovieListPayload {
 }
 
 const actions = {
-  epicGetOnScrollMovieList: createAction<IMovieListType>(
-    c.MOVIE_LIST_MORE_UPDATE
+  epicGetOnScrollMovieList: createAction(
+    c.MOVIE_LIST_MORE_UPDATE,
+    (s: IMovieListType) => ({
+      type: c.MOVIE_LIST_UPDATE,
+      payload: s
+    })
   ),
-  updateMovieList: createAction<IUpdateMovieListPayload>(c.MOVIE_LIST_UPDATE),
+  updateMovieList: createAction(
+    c.MOVIE_LIST_UPDATE,
+    (s: IUpdateMovieListPayload) => ({
+      type: c.MOVIE_LIST_UPDATE,
+      payload: s
+    })
+  ),
   epicWishlistAdd: loginActions.epicWishlistAdd
 };
 

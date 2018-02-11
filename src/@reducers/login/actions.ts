@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions';
+import { createAction } from 'typesafe-actions';
 
 import { $call } from 'utility-types';
 
@@ -13,12 +13,24 @@ export interface IEditFieldPayload {
 }
 
 const actions = {
-  editField: createAction<IEditFieldPayload>(c.LOGIN_EDIT_FIELD),
+  editField: createAction(c.LOGIN_EDIT_FIELD, (s: IEditFieldPayload) => ({
+    type: c.LOGIN_EDIT_FIELD,
+    payload: s
+  })),
   checkLoginCredentials: createAction(c.CHECK_CREDENTIALS),
-  updateLoginStatus: createAction<ILoginStatus>(c.UPDATE_LOGIN_STATUS),
-  epicWishlistAdd: createAction<IResultRow>(c.EPIC_ADD_TO_WISHLIST),
+  updateLoginStatus: createAction(c.UPDATE_LOGIN_STATUS, (s: ILoginStatus) => ({
+    type: c.UPDATE_LOGIN_STATUS,
+    payload: s
+  })),
+  epicWishlistAdd: createAction(c.EPIC_ADD_TO_WISHLIST, (s: IResultRow) => ({
+    type: c.EPIC_ADD_TO_WISHLIST,
+    payload: s
+  })),
   epicWishlistGet: createAction(c.EPIC_GET_WISHLIST),
-  wishListUpdate: createAction<IResultRow[]>(c.WISH_LIST_UPDATE)
+  wishListUpdate: createAction(c.WISH_LIST_UPDATE, (rows: IResultRow[]) => ({
+    type: c.WISH_LIST_UPDATE,
+    payload: rows
+  }))
 };
 
 export default actions;

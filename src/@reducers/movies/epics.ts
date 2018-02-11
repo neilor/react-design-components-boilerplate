@@ -1,18 +1,17 @@
-import { Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 
 import { isActionOf } from 'typesafe-actions';
 
 import { IRootState, IRootAction } from '@reducers';
-import { IMovieListType, movieList } from '@services/moviedb';
+import { movieList } from '@services/moviedb';
 
 import actions from './actions';
 
 const getMoreMovieListEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$
     .filter(isActionOf(actions.epicGetOnScrollMovieList))
-    .mergeMap((action: Action<IMovieListType>) => {
-      const type = action.payload as IMovieListType;
+    .mergeMap(action => {
+      const type = action.payload;
 
       const movieListData = store.getState().movies[type];
 

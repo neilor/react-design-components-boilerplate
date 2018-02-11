@@ -1,4 +1,3 @@
-import { Action } from 'redux-actions';
 import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,7 +12,7 @@ import actions from './actions';
 const searchTermApiEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   action$
     .filter(isActionOf(actions.updateSearchTerm))
-    .map((action: Action<string>) => (action.payload as string).trim())
+    .map(action => action.payload.trim())
     .debounceTime(250)
     .mergeMap(query => {
       if (query) {
