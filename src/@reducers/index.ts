@@ -14,10 +14,11 @@ import {
   IReducerState as IHomeState
 } from './home';
 
-import movies, {
+import {
+  reducers as moviesReducers,
   epics as moviesEpics,
   IReducerState as IMoviesState
-} from './movies/reducers';
+} from './movies';
 
 export const rootEpic = combineEpics(loginEpics, homeEpics, moviesEpics);
 
@@ -30,6 +31,6 @@ export interface IRootState {
 export const rootReducer = combineReducers<IRootState>({
   login: loginReducers,
   home: homeReducers,
-  movies,
+  movies: moviesReducers,
   router: routerReducer
 });

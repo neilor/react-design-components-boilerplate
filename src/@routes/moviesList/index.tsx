@@ -12,7 +12,7 @@ import MovieCard from '@components/MovieCard';
 import MovieList from '@components/MovieList';
 
 import { IRootState } from '@reducers';
-import * as moviesActions from '@reducers/movies/actions';
+import { actions as moviesActions } from '@reducers/movies';
 import { IMovieListType } from '@services/moviedb';
 
 interface IProps {

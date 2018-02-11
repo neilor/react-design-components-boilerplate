@@ -3,7 +3,7 @@ import { combineEpics, Epic } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 
 import { IRootState } from '@reducers';
-import * as moviesActions from '@reducers/movies/actions';
+import { actions as moviesActions } from '@reducers/movies';
 import { search } from '@services/moviedb';
 
 import actions from './actions';
