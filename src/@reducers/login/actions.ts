@@ -1,5 +1,4 @@
 import actionCreatorFactory from 'typescript-fsa';
-
 import { $call } from 'utility-types';
 
 import { IResultRow } from '@services/moviedb';

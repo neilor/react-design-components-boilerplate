@@ -1,4 +1,4 @@
-import { handleActions, Action } from 'redux-actions';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import { IResultRow, ISearchType } from '@services/moviedb';
 
@@ -16,27 +16,20 @@ const INITIAL_STATE: IReducerState = {
   searchType: 'multi'
 };
 
-export default handleActions<IReducerState, never>(
-  {
-    [actions.updateSearchTerm.toString()]: (state, action: Action<string>) => ({
-      ...state,
-      searchTerm: action.payload as string
-    }),
-    [actions.updateResults.toString()]: (
-      state,
-      action: Action<IResultRow[]>
-    ) => ({
-      ...state,
-      results: action.payload as IResultRow[]
-    }),
-    [actions.updateSearchType.toString()]: (
-      state,
-      action: Action<ISearchType>
-    ) => ({
-      ...state,
-      searchType: action.payload as ISearchType,
-      results: []
-    })
-  },
-  INITIAL_STATE
-);
+const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(actions.updateSearchTerm, (state, payload) => ({
+    ...state,
+    searchTerm: payload
+  }))
+  .case(actions.updateResults, (state, payload) => ({
+    ...state,
+    results: payload
+  }))
+  .case(actions.updateSearchType, (state, payload) => ({
+    ...state,
+    searchType: payload,
+    results: []
+  }))
+  .build();
+
+export default reducer;

@@ -7,9 +7,10 @@ import Link from '@components/Link';
 import Loader from '@components/Loader';
 
 import { IRootState } from '@reducers';
+import { actions as HomeActions } from '@reducers/home';
 import { getMovieName } from '@selectors';
 
-import { actions as HomeActions } from '@reducers/home';
+import { ISearchType } from '@services/moviedb';
 
 import * as s from './index.scss';
 
@@ -67,7 +68,7 @@ class Home extends React.Component<IProps, any> {
             onChange={e => {
               const target = e.target as HTMLSelectElement;
 
-              actions.updateSearchType(target.value);
+              actions.updateSearchType(target.value as ISearchType);
             }}
           >
             <option value="multi">All</option>

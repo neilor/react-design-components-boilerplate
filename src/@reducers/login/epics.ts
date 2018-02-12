@@ -10,7 +10,7 @@ import { verifyLogin, addToWishlist, getWishlist } from '@services/login';
 import actions from './actions';
 
 const checkCredentialsEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.filter(actions.checkLoginCredentials.match).mergeMap(() => {
+  action$.ofAction(actions.checkLoginCredentials).mergeMap(() => {
     const loginState = store.getState().login;
 
     return Observable.concat(
@@ -29,7 +29,7 @@ const checkCredentialsEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   });
 
 const addToWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.filter(actions.epicWishlistAdd.match).mergeMap(action => {
+  action$.ofAction(actions.epicWishlistAdd).mergeMap(action => {
     const id = store.getState().login.id;
 
     addToWishlist(id, action.payload);
@@ -40,7 +40,7 @@ const addToWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
   });
 
 const getWishlistEpic: Epic<IRootAction, IRootState> = (action$, store) =>
-  action$.filter(actions.epicWishlistGet.match).mergeMap(() => {
+  action$.ofAction(actions.epicWishlistGet).mergeMap(() => {
     const id = store.getState().login.id;
 
     const wishlist = getWishlist(id);

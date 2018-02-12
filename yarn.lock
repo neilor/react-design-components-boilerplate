@@ -277,10 +277,6 @@
   version "16.0.36"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.36.tgz#ceb5639013bdb92a94147883052e69bb2c22c69b"
 
-"@types/redux-actions@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@types/redux-actions/-/redux-actions-2.2.2.tgz#e9d488c83ce1244178956cb0580a5aec3349eb4f"
-
 "@types/relateurl@*":
   version "0.2.28"
   resolved "https://registry.yarnpkg.com/@types/relateurl/-/relateurl-0.2.28.tgz#6bda7db8653fa62643f5ee69e9f69c11a392e3a6"
@@ -4289,7 +4285,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.4, lodash-es@^4.2.0, lodash-es@^4.2.1:
+lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.5.tgz#9fc6e737b1c4d151d8f9cae2247305d552ce748f"
 
@@ -4369,7 +4365,7 @@ lodash@3.x, lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.6.1, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.6.1, lodash@~4.17.4:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -5981,19 +5977,6 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-reduce-reducers@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
-
-redux-actions@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-2.2.1.tgz#d64186b25649a13c05478547d7cd7537b892410d"
-  dependencies:
-    invariant "^2.2.1"
-    lodash "^4.13.1"
-    lodash-es "^4.17.4"
-    reduce-reducers "^0.1.0"
-
 redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
@@ -7025,15 +7008,20 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typesafe-actions@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-1.1.2.tgz#af88ede3ee254be425c3e0e02de11b182830ae48"
-
 typescript-fsa-reducers@^0.4.5:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/typescript-fsa-reducers/-/typescript-fsa-reducers-0.4.5.tgz#58fffb2f6eeca6817c2f656b7e7df2cb1c9d1f84"
   dependencies:
     typescript-fsa "^2.0.0"
+
+typescript-fsa-redux-observable@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/typescript-fsa-redux-observable/-/typescript-fsa-redux-observable-0.18.0.tgz#ae74cc8d0f5b9d56142d8775326623b3ac910875"
+  dependencies:
+    redux "^3.7.2"
+    redux-observable "^0.17.0"
+    rxjs "^5.5.6"
+    typescript-fsa-reducers "^0.4.5"
 
 typescript-fsa@^2.0.0, typescript-fsa@^2.5.0:
   version "2.5.0"

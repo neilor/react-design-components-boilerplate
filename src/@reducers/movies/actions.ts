@@ -1,8 +1,5 @@
-import { createAction } from 'typesafe-actions';
-
+import actionCreatorFactory from 'typescript-fsa';
 import { $call } from 'utility-types';
-
-import c from './constants';
 
 import loginActions from '@reducers/login/actions';
 import { IMovieListType, IMultiSearchResult } from '@services/moviedb';
@@ -12,21 +9,13 @@ export interface IUpdateMovieListPayload {
   data: IMultiSearchResult;
 }
 
+const actionCreator = actionCreatorFactory('MOVIES');
+
 const actions = {
-  epicGetOnScrollMovieList: createAction(
-    c.MOVIE_LIST_MORE_UPDATE,
-    (s: IMovieListType) => ({
-      type: c.MOVIE_LIST_UPDATE,
-      payload: s
-    })
+  epicGetOnScrollMovieList: actionCreator<IMovieListType>(
+    'MOVIE_LIST_MORE_UPDATE'
   ),
-  updateMovieList: createAction(
-    c.MOVIE_LIST_UPDATE,
-    (s: IUpdateMovieListPayload) => ({
-      type: c.MOVIE_LIST_UPDATE,
-      payload: s
-    })
-  ),
+  updateMovieList: actionCreator<IUpdateMovieListPayload>('MOVIE_LIST_UPDATE'),
   epicWishlistAdd: loginActions.epicWishlistAdd
 };
 

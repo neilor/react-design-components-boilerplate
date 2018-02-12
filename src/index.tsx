@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import 'rxjs';
+import 'typescript-fsa-redux-observable'; // for adding ofType function in action$
 
 import ProtectedRoutes from '@containers/ProtectedRoutes';
 
