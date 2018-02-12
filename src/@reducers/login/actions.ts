@@ -1,10 +1,9 @@
-import { createAction } from 'typesafe-actions';
+import actionCreatorFactory from 'typescript-fsa';
 
 import { $call } from 'utility-types';
 
 import { IResultRow } from '@services/moviedb';
 
-import c from './constants';
 import { ILoginStatus } from './reducers';
 
 export interface IEditFieldPayload {
@@ -12,25 +11,15 @@ export interface IEditFieldPayload {
   value: string;
 }
 
+const actionCreator = actionCreatorFactory('LOGIN');
+
 const actions = {
-  editField: createAction(c.LOGIN_EDIT_FIELD, (s: IEditFieldPayload) => ({
-    type: c.LOGIN_EDIT_FIELD,
-    payload: s
-  })),
-  checkLoginCredentials: createAction(c.CHECK_CREDENTIALS),
-  updateLoginStatus: createAction(c.UPDATE_LOGIN_STATUS, (s: ILoginStatus) => ({
-    type: c.UPDATE_LOGIN_STATUS,
-    payload: s
-  })),
-  epicWishlistAdd: createAction(c.EPIC_ADD_TO_WISHLIST, (s: IResultRow) => ({
-    type: c.EPIC_ADD_TO_WISHLIST,
-    payload: s
-  })),
-  epicWishlistGet: createAction(c.EPIC_GET_WISHLIST),
-  wishListUpdate: createAction(c.WISH_LIST_UPDATE, (rows: IResultRow[]) => ({
-    type: c.WISH_LIST_UPDATE,
-    payload: rows
-  }))
+  editField: actionCreator<IEditFieldPayload>('LOGIN_EDIT_FIELD'),
+  checkLoginCredentials: actionCreator('CHECK_CREDENTIALS'),
+  updateLoginStatus: actionCreator<ILoginStatus>('UPDATE_LOGIN_STATUS'),
+  epicWishlistAdd: actionCreator<IResultRow>('EPIC_ADD_TO_WISHLIST'),
+  epicWishlistGet: actionCreator('EPIC_GET_WISHLIST'),
+  wishListUpdate: actionCreator<IResultRow[]>('WISH_LIST_UPDATE')
 };
 
 export default actions;

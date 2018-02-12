@@ -7029,6 +7029,16 @@ typesafe-actions@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-1.1.2.tgz#af88ede3ee254be425c3e0e02de11b182830ae48"
 
+typescript-fsa-reducers@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/typescript-fsa-reducers/-/typescript-fsa-reducers-0.4.5.tgz#58fffb2f6eeca6817c2f656b7e7df2cb1c9d1f84"
+  dependencies:
+    typescript-fsa "^2.0.0"
+
+typescript-fsa@^2.0.0, typescript-fsa@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/typescript-fsa/-/typescript-fsa-2.5.0.tgz#1baec01b5e8f5f34c322679d1327016e9e294faf"
+
 typescript@^2.6.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.1.tgz#bb3682c2c791ac90e7c6210b26478a8da085c359"

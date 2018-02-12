@@ -1,8 +1,8 @@
-import { handleActions, Action } from 'redux-actions';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import { IResultRow } from '@services/moviedb';
 
-import actions, { IEditFieldPayload } from './actions';
+import actions from './actions';
 
 export type ILoginStatus = 'success' | 'pristine' | 'checking' | 'failure';
 
@@ -20,48 +20,36 @@ const INITIAL_STATE: IReducerState = {
   wishlist: []
 };
 
-export default handleActions<IReducerState, never>(
-  {
-    [actions.editField.toString()]: (
-      state,
-      action: Action<IEditFieldPayload>
-    ) => {
-      const payload = action.payload as IEditFieldPayload;
-
-      const newState = {
-        ...state,
-        [payload.key]: payload.value
-      };
-
-      if (state.status !== 'pristine') {
-        Object.assign(newState, { status: 'pristine' });
-      }
-
-      return newState;
-    },
-    [actions.updateLoginStatus.toString()]: (
-      state,
-      action: Action<ILoginStatus>
-    ) => {
-      const newState = {
-        ...state,
-        status: action.payload as ILoginStatus
-      };
-
-      if (action.payload === 'success') {
-        // clear password
-        Object.assign(newState, { password: '' });
-      }
-
-      return newState;
-    },
-    [actions.wishListUpdate.toString()]: (
-      state,
-      action: Action<IResultRow[]>
-    ) => ({
+const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(actions.editField, (state, payload) => {
+    const newState = {
       ...state,
-      wishlist: action.payload as IResultRow[]
-    })
-  },
-  INITIAL_STATE
-);
+      [payload.key]: payload.value
+    };
+
+    if (state.status !== 'pristine') {
+      Object.assign(newState, { status: 'pristine' });
+    }
+
+    return newState;
+  })
+  .case(actions.updateLoginStatus, (state, payload) => {
+    const newState = {
+      ...state,
+      status: payload
+    };
+
+    if (payload === 'success') {
+      // clear password
+      Object.assign(newState, { password: '' });
+    }
+
+    return newState;
+  })
+  .case(actions.wishListUpdate, (state, payload) => ({
+    ...state,
+    wishlist: payload
+  }))
+  .build();
+
+export default reducer;
