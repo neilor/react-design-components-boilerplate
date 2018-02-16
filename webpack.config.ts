@@ -27,7 +27,11 @@ const config: webpack.Configuration = {
       // .ts, .tsx
       {
         test: /\.tsx?$/,
-        use: ['react-hot-loader/webpack', 'awesome-typescript-loader']
+        use: [
+          'react-hot-loader/webpack',
+          'istanbul-instrumenter-loader',
+          'awesome-typescript-loader'
+        ]
       },
       // s?css
       {
