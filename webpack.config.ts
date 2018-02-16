@@ -1,8 +1,8 @@
-import * as webpack from 'webpack';
 import * as path from 'path';
+import * as webpack from 'webpack';
 
-import HtmlWebpackPlugin = require('html-webpack-plugin');
 import CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+import HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const outPath = path.join(__dirname, './dist');
 const sourcePath = path.join(__dirname, './src');
