@@ -28,6 +28,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     };
 
     if (state.status !== 'pristine') {
+      // clear error messages
       Object.assign(newState, { status: 'pristine' });
     }
 
