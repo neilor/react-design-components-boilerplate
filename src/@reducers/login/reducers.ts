@@ -14,8 +14,8 @@ export interface IReducerState {
 }
 
 const INITIAL_STATE: IReducerState = {
-  id: '',
-  password: '',
+  id: 'foo',
+  password: '1234',
   status: 'pristine',
   wishlist: []
 };
