@@ -11,3 +11,13 @@ declare module '*.scss' {
   const styles: any;
   export = styles;
 }
+
+// for JSON import support
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
+declare module "json!*" {
+  const value: any;
+  export default value;
+}
