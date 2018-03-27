@@ -8,12 +8,8 @@
     "node": ">=8"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --port=3456",
-    "build": "webpack -p --progress --colors",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "coverage": "http-server coverage",
-    "test": "cypress run"
+    "build": "rm -rf storybook-static && build-storybook",
+    "start": "serve -p 9001 storybook-static"
   },
   "license": "MIT",
   "prettier": {
@@ -41,7 +37,6 @@
     "babel-core": "^6.26.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "css-loader": "^0.28.7",
-    "cypress": "^1.4.2",
     "file-loader": "^1.1.5",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
@@ -74,6 +69,7 @@
     "react-infinite-scroller": "^1.1.3",
     "react-redux": "^5.0.7",
     "react-toastify": "^3.3.1",
+    "serve": "^6.5.3",
     "typescript-fsa": "^2.5.0",
     "typescript-fsa-reducers": "^0.4.5",
     "typescript-fsa-redux-observable": "^0.18.0",
