@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-export interface SampleButtonProps {
+export interface IProps {
   label: string;
-  onClick?: Function;
+  onClick?: () => void;
 }
 
-export interface SampleButtonState {
+export interface IState {
   status: string;
 }
 
-class SampleButton extends React.Component<SampleButtonProps, SampleButtonState> {
-  state = {
+class SampleButton extends React.Component<IProps, IState> {
+  public state = {
     status: 'waiting click',
   }
 
