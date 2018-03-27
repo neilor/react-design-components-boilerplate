@@ -21,3 +21,6 @@ declare module "json!*" {
   const value: any;
   export default value;
 }
+
+// non-typed modules
+declare module '@storybook/addon-actions';
